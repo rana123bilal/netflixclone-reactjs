@@ -17,7 +17,7 @@ function NavSection() {
         <div className="right-links-container">
           <div >SORT BY</div>
           <div>RELEASE DATE</div>
-          <div class="arrow-down"></div>
+          <div className="arrow-down"></div>
       </div>
       </div>
       <hr />

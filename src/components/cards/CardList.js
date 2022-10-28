@@ -1,25 +1,25 @@
-import React from 'react'
-import Card from './Card'
-import './CardList.css'
-import { DUMMY_DATA } from '../data'
-
+import React from "react";
+import Card from "./Card";
+import "./CardList.css";
+import { DUMMY_DATA } from "../data";
 
 function CardList() {
-
   return (
-    <>
-    {DUMMY_DATA.map(movies => {
+    <div>
+      {DUMMY_DATA.map((movies, i) => {
         return (
-            <div className='wrapper'>
-            <Card title={movies.title} image={movies.image} genre ={movies.genre} year={movies.year} />
-            </div>
-        )
-       
-    })
-   
-    }
-    </>
-  )
+          <div className="wrapper" key={i}>
+            <Card
+              title={movies.title}
+              image={movies.image}
+              genre={movies.genre}
+              year={movies.year}
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
-export default CardList
+export default CardList;

@@ -1,14 +1,16 @@
 import logo from '../../assets/images/logo.png';
 import './Header.css';
 
-function Header() {
+
+function Header({showAddMovieModal}) {
+
   return (
     <div className='header-container'>
          <div className="logo">
           <img src={logo} alt="netflixrullet" />
           </div>
           <div>
-          <button className="add-movie">+ ADD MOVIE</button>
+          <button className="add-movie" onClick={() => {showAddMovieModal()}}>+ ADD MOVIE</button>
           </div>
     </div>
   )
