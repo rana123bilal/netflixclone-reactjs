@@ -17,6 +17,7 @@
     opacity: 70%;
     border: none;
     opacity: 70%;
+    font-size: 20px;
 }
 
 input::placeholder{
@@ -27,7 +28,7 @@ input::placeholder{
     padding: 10px;
 }
 
-.title{
+.main-title{
 font-style: normal;;
 font-weight: 300;
 font-size: 40px;
@@ -52,6 +53,7 @@ body{
     border: none;
     font-size: 17px;
     cursor: pointer;
+    font-family: Montserrat;
 }
 
 .output{

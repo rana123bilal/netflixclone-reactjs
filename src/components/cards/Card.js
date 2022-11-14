@@ -1,13 +1,61 @@
-import React from "react";
-import "./Card.css";
-import PropTypes from "prop-types";
+import React, {useState} from 'react';
+import Card from '@mui/material/Card';
+import './Card.css';
+import CardMedia from '@mui/material/CardMedia';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
-function Card({ title, image, year, genre }) {
+export default function MediaCard({title, image, genre, year}) {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [isHovering, setIsHovering] = useState(false);
+
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const handleMouseOver = () => {
+        setIsHovering(true);
+      };
+    
+      const handleMouseOut = () => {
+        setIsHovering(false);
+      };
   return (
-    <div className="card" data-testid="card-1">
-      <div className="card-body">
-        <img src={image} alt="Avatar" />
-        <div className="text">
+    <>
+    <Card sx={{ maxWidth: 345 }}  onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      <CardMedia
+        component="img"
+        height="500"
+        image={image}
+        alt="green iguana"
+      />
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Edit</MenuItem>
+        <MenuItem onClick={handleClose}>Delete</MenuItem>
+      </Menu>
+      {isHovering && <div className="kebab-menu" onClick={handleClick} >
+            <div className="firstdot"></div>
+            <div className="seconddot"></div>
+            <div className="thirddot"></div>
+          </div>}
+      <div className="text">
           <div className="title">
             <h3>{title}</h3>
             <p>{genre}</p>
@@ -16,15 +64,7 @@ function Card({ title, image, year, genre }) {
             <p className="year">{year}</p>
           </div>
         </div>
-      </div>
-    </div>
+    </Card>
+    </>
   );
 }
-
-Card.propTypes = {
-  title: PropTypes.string,
-  year: PropTypes.string,
-  genre: PropTypes.string,
-};
-
-export default Card;

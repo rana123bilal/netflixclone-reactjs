@@ -2,23 +2,26 @@ import React from "react";
 import Card from "./Card";
 import "./CardList.css";
 import { DUMMY_DATA } from "../data";
+import { Grid } from "@mui/material";
 
 function CardList() {
   return (
-    <div>
+    <>
+      <Grid>
       {DUMMY_DATA.map((movies, i) => {
         return (
-          <div className="wrapper" key={i}>
+          <Grid className="wrapper" key={i}>
             <Card
               title={movies.title}
               image={movies.image}
               genre={movies.genre}
               year={movies.year}
             />
-          </div>
+          </Grid>
         );
       })}
-    </div>
+      </Grid>
+    </>
   );
 }
 

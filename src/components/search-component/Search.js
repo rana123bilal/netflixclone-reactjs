@@ -19,8 +19,8 @@ function Search() {
 
   return (
     <>
-    <div className="search-container">
-      <h1 className="title">Find your Movie</h1>
+    <div className="search-container"  >
+      <h1 className="main-title">Find your Movie</h1>
       <div className="input-container">
         <input
           type="search"
