@@ -136,3 +136,35 @@ textarea {
     margin-top: 10px;
     font-family: Montserrat;
 }
+
+.deleteMovieModal p{
+    color: #FFFFFF;
+    margin-left: 45px;
+    margin-top: -28px;
+}
+
+.confirm-delete{
+    margin-left: 586px;
+    width: 130px; 
+    height: 40px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    background-color: #F65261;
+    border: none;
+    cursor: pointer;
+    font-family: Montserrat;
+}
+.deleteMovieModal{
+    padding: 40px;
+    box-sizing: border-box;
+    background:#232323;
+    z-index:99;
+    position:fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
+    overflow: auto;
+    margin-top: 5px;
+    float: right;
+    width:800px;
+}

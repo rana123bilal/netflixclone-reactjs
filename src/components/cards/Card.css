@@ -54,48 +54,10 @@
 }
 
 .kebab-menu{
-    background-color: #2A202D;
-    border-radius: 20px;
-    width: 36px;
-    height: 36px;
-    left: 280px;
-    top: -479px;
+    width: 30px;
+    height: 0px;
+    left: 290px;
+    top: -487px;
     position: relative;
+    padding: 0px;
 }
-
-.firstdot{
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    width: 4px;
-    height: 4px;
-    left: 16px;
-    top: 7px;
-    position: relative;
-}
-.seconddot{
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    width: 4px;
-    height: 4px;
-    left: 16px;
-    top: 11px;
-    position: relative;
-}
-.thirddot{
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    width: 4px;
-    height: 4px;
-    left: 16px;
-    top: 15px;
-    position: relative;
-}
-
-/* .menuList{
-    background-color: #2A202D;
-    color: #FFFFFF;
-    width: 80px;
-    left: 280px;
-    top: -479px;
-    position: relative;
-} */

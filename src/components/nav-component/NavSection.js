@@ -21,7 +21,6 @@ function NavSection() {
       </div>
       </div>
       <hr />
-      <div className="found-movies">39 movies found</div>
     </>
   );
 }
