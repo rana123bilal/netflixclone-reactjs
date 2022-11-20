@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
+import { DUMMY_DATA } from '../data';
 
-export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
+export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal, setSortedList, sortedList}) {
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",
-    movieUrl: "",
+    movieURL: "",
     rating: "",
     genre: "",
     runtime: "",
@@ -18,7 +19,7 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
     setInputMovieData({ ...inputMovieData, title: event.target.value });
   }
   function URLHandler(event) {
-    setInputMovieData({ ...inputMovieData, movieUrl: event.target.value });
+    setInputMovieData({ ...inputMovieData, movieURL: event.target.value });
   }
   function genreHandler(event) {
     setInputMovieData({ ...inputMovieData, genre: event.target.value });
@@ -38,8 +39,21 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
 
   function addMovieHandler(event) {
     event.preventDefault();
-    console.log(inputMovieData);
-    setInputMovieData('')
+    const {title, releaseDate, movieURL, rating, genre, runtime, overview} = inputMovieData
+    const year = releaseDate.split("-")[0]
+    const id = sortedList.length + 1
+    const newMovie = {title, year, movieURL, rating, genre, runtime, overview, id}
+    setSortedList([ ...DUMMY_DATA, newMovie]);
+
+setInputMovieData({
+  title: "",
+  releaseDate: "",
+  movieURL: "",
+  rating: "",
+  genre: "",
+  runtime: "",
+  overview: "",
+})
   }
 
   const handleClose = () => setOpenAddMovieModal(false);
@@ -72,7 +86,7 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
                     type="text"
                     placeholder="Enter URL"
                     onChange={URLHandler}
-                    value={inputMovieData.movieUrl}
+                    value={inputMovieData.movieURL}
                   />
                 </div>
                 <div>

@@ -2,7 +2,7 @@
     color: white;
     display: flex;
     justify-content: space-around;
-    margin-top: 10px;
+    margin-top: 20px;
     gap: 2rem;
 }
 
@@ -37,6 +37,9 @@
 .right-links-container{
     display: flex;
     gap: 30px;
+    margin-top: -21px;
+    justify-content: center;
+    align-items: center;
 }
 
 hr{

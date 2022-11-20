@@ -1,34 +1,46 @@
 import React from "react";
-import Card from "./Card";
+import MediaCard from "./Card";
 import "./CardList.css";
-import { DUMMY_DATA } from "../data";
 import { Grid } from "@mui/material";
 
-function CardList({ setOpenEditMovieModal, setOpenDeleteMovieModal, searchedTerm }) {
-
-  const finalMovies = DUMMY_DATA.filter((val) => {
-    if(searchedTerm == ''){
-      return val
-    }else if (val.title.toLocaleLowerCase().includes(searchedTerm.toLocaleLowerCase())){
-      return val
+function CardList({
+  setOpenEditMovieModal,
+  setOpenDeleteMovieModal,
+  searchedTerm,
+  openEditMovieModal,
+  openDeleteMovieModal,
+  sortedList,
+  getId
+}) {
+  const finalMovies = sortedList.filter((val) => {
+    if (searchedTerm !== "") {
+      return val.title
+        .toLocaleLowerCase()
+        .includes(searchedTerm.toLocaleLowerCase());
     }
-  })
-  const sortedArr = finalMovies.sort((a,b) => a.title.localeCompare(b.title))
+    return val;
+  });
+
+  
 
   return (
     <>
-    <div className="found-movies">{finalMovies.length} movies found</div>
+      <div className="found-movies">{finalMovies.length} movies found</div>
       <Grid>
-        {sortedArr.map((movies, i) => {
+        {finalMovies.map((movie, i) => {
           return (
             <Grid className="wrapper" key={i}>
-              <Card
-                title={movies.title}
-                image={movies.image}
-                genre={movies.genre}
-                year={movies.year}
+              <MediaCard
+              getId={getId}
+              id={movie.id}
+                title={movie.title}
+                image={movie.movieURL}
+                genre={movie.genre}
+                year={movie.year}
                 setOpenEditMovieModal={setOpenEditMovieModal}
                 setOpenDeleteMovieModal={setOpenDeleteMovieModal}
+                openEditMovieModal={openEditMovieModal}
+                openDeleteMovieModal={openDeleteMovieModal}
               />
             </Grid>
           );

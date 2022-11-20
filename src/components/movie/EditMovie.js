@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect} from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import './Movies.css'
@@ -6,6 +6,8 @@ import './Movies.css'
 
 export default function EditMovie({openEditMovieModal, setOpenEditMovieModal}) {
   const handleClose = () => setOpenEditMovieModal(false);
+
+ 
 
   return (
     <div>

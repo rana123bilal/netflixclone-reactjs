@@ -8,40 +8,46 @@ import img6 from '../assets/images/card6.png'
 
 export const DUMMY_DATA = [
     {
-        image : img1,
+        id: 1,
+        movieURL : img1,
         title : 'Pulp Fiction',
         genre : 'Action & Adventure',
-        year : '2004'    
+        year : 2004    
     },
     {
-        image : img2,
+        id: 2,
+        movieURL : img2,
         title : 'Bohemian Rhapsody',
         genre : 'Drama, Biography, Music',
-        year : '2003'    
+        year : 2003   
     },
     {
-        image : img3, 
+        id: 3,
+        movieURL : img3, 
         title : 'Kill Bill: Vol 2',
         genre : 'Oscar winning Movie',
-        year : '1994'    
+        year : 1994 
     },
     {
-        image : img4,
+        id: 4,
+        movieURL : img4,
         title : 'Avengers: War of Infinity',
         genre : 'Action & Adventure',
-        year : '2004'    
+        year : 2004   
     },
     {
-        image : img5,
+        id: 5,
+        movieURL : img5,
         title : 'Inception',
         genre : 'Action & Adventure',
-        year : '2003'    
+        year : 2003   
     },
     {
-        image : img6,
+        id: 6,
+        movieURL : img6,
         title : 'Reservoir dogs',
         genre : 'Oscar winning Movie',
-        year : '1994'    
+        year : 1994   
     },
     
     

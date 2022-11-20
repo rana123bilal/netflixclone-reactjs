@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import "./Card.css";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,24 +7,36 @@ import MenuItem from "@mui/material/MenuItem";
 import kebabMenu from "../../assets/images/kebebMenu.png";
 
 export default function MediaCard({
+  id,
+  getId,
   title,
   image,
   genre,
   year,
+  openEditMovieModal,
+  openDeleteMovieModal,
   setOpenEditMovieModal,
   setOpenDeleteMovieModal
 }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
 
+  useEffect(() => {
+    setAnchorEl(false)
+
+  }, [openEditMovieModal, openDeleteMovieModal]);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+
   function editHandler() {
     setOpenEditMovieModal(true);
   }
   function deleteHandler() {
+    getId(id)
     setOpenDeleteMovieModal(true);
   }
   const handleClose = () => {
