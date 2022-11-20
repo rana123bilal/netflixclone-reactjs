@@ -1,0 +1,63 @@
+.card{
+   display: flex;
+   flex-direction: row;
+    width: 300px;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+    margin-top: 20px;
+    margin: 30px;
+    flex: 0 1 calc(30% - 110px);
+ 
+}
+.text{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    
+}
+
+.title{
+    line-height: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title p{
+    font-size: 15px;
+    opacity: 0.7;
+    margin-top: -15px;
+}
+
+.title h3{
+    font-size: 22px;
+    opacity: 0.7;
+    text-align: left;
+}
+
+.card img{
+    width: 323.41px;
+    height: 486px;
+    
+}
+
+.year{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    width: 66px;
+    height: 26px;
+}
+
+.kebab-menu{
+    width: 30px;
+    height: 0px;
+    left: 290px;
+    top: -487px;
+    position: relative;
+    padding: 0px;
+}
