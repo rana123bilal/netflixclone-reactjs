@@ -3,8 +3,12 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
 import { DUMMY_DATA } from '../data';
+import { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
-export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal, setSortedList, sortedList}) {
+export default function AddMovie() {
+  
+  const {openAddMovieModal, setOpenAddMovieModal, setSortedList, sortedList} = useContext(DataContext)
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",

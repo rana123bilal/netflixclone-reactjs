@@ -2,15 +2,17 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
-import { DUMMY_DATA } from "../data";
+import { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
-export default function DeleteMovie({
-  openDeleteMovieModal,
-  setOpenDeleteMovieModal,
-  setSortedList,
-  movieId,
-  sortedList
-}) {
+export default function DeleteMovie() {
+  const {
+    openDeleteMovieModal,
+    setOpenDeleteMovieModal,
+    setSortedList,
+    movieId,
+    sortedList
+  } = useContext(DataContext)
   const handleClose = () => setOpenDeleteMovieModal(false);
 
   const deleteHandler = (id) => {

@@ -1,7 +1,10 @@
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
+import { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
-function Header({ setOpenAddMovieModal }) {
+function Header() {
+  const {setOpenAddMovieModal} = useContext(DataContext)
   function showAddMovieModal() {
     setOpenAddMovieModal(true);
   }

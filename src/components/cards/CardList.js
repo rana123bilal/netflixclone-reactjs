@@ -2,16 +2,11 @@ import React from "react";
 import MediaCard from "./Card";
 import "./CardList.css";
 import { Grid } from "@mui/material";
+import { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
-function CardList({
-  setOpenEditMovieModal,
-  setOpenDeleteMovieModal,
-  searchedTerm,
-  openEditMovieModal,
-  openDeleteMovieModal,
-  sortedList,
-  getId
-}) {
+function CardList() {
+  const { searchedTerm, sortedList } = useContext(DataContext);
   const finalMovies = sortedList.filter((val) => {
     if (searchedTerm !== "") {
       return val.title
@@ -21,8 +16,6 @@ function CardList({
     return val;
   });
 
-  
-
   return (
     <>
       <div className="found-movies">{finalMovies.length} movies found</div>
@@ -31,16 +24,11 @@ function CardList({
           return (
             <Grid className="wrapper" key={i}>
               <MediaCard
-              getId={getId}
-              id={movie.id}
+                id={movie.id}
                 title={movie.title}
                 image={movie.movieURL}
                 genre={movie.genre}
                 year={movie.year}
-                setOpenEditMovieModal={setOpenEditMovieModal}
-                setOpenDeleteMovieModal={setOpenDeleteMovieModal}
-                openEditMovieModal={openEditMovieModal}
-                openDeleteMovieModal={openDeleteMovieModal}
               />
             </Grid>
           );
