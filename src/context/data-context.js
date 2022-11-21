@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
   const [sortedList, setSortedList] = useState([]);
   const [movieId, setMovieId] = useState(null);
 
-  const getId = (id) => {
+  const getMovieId = (id) => {
     setMovieId(id);
   };
 
@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
         setSearchedTerm,
         movieId,
         setMovieId,
-        getId,
+        getMovieId,
       }}
     >
       {children}
