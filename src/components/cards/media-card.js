@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 export default function MediaCard({ id, title, image, genre, year }) {
 
   const {
-    getMovieId,
+    setMovieIdForDeleteEdit,
     openEditMovieModal,
     openDeleteMovieModal,
     setOpenEditMovieModal,
@@ -35,7 +35,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setOpenEditMovieModal(true);
   }
   function deleteHandler() {
-    getMovieId(id);
+    setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
   const handleClose = () => {

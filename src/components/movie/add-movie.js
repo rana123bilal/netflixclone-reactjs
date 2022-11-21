@@ -8,7 +8,7 @@ import DataContext from "../../context/data-context";
 
 export default function AddMovie() {
   
-  const {openAddMovieModal, setOpenAddMovieModal, setSortedList, sortedList} = useContext(DataContext)
+  const {toggleMovieModal, setToggleMovieModal, setSortedList, sortedList} = useContext(DataContext)
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",
@@ -60,12 +60,12 @@ setInputMovieData({
 })
   }
 
-  const handleClose = () => setOpenAddMovieModal(false);
+  const handleClose = () => setToggleMovieModal(false);
 
   return (
     <div>
       <Modal
-        open={openAddMovieModal}
+        open={toggleMovieModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

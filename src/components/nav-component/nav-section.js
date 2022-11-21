@@ -3,26 +3,21 @@ import "./nav-section.css";
 import { DUMMY_DATA } from "../data";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
+import { SORT_TYPES } from "../../Constants";
 
 function NavSection() {
   const { setSortedList } = useContext(DataContext)
   const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {
-    const sortArray = (type) => {
-      const types = {
-        title: "title",
-        genre: "genre",
-        year: "year",
-      };
-
-      const sortProperty = types[type];
+    const sortMovieList = (type) => {
+      const sortProperty = SORT_TYPES[type];
       const sorted = [...DUMMY_DATA].sort((a, b) =>
         a[sortProperty] < b[sortProperty] ? -1 : 1
       );
       setSortedList(sorted);
     };
-    sortArray(sortValue);
+    sortMovieList(sortValue);
   }, [setSortedList, sortValue]);
 
   return (

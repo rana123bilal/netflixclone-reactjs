@@ -5,14 +5,14 @@ import { createContext, useState, useEffect } from "react";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
-  const [openAddMovieModal, setOpenAddMovieModal] = useState(false);
+  const [toggleMovieModal, setToggleMovieModal] = useState(false);
   const [openEditMovieModal, setOpenEditMovieModal] = useState(false);
   const [openDeleteMovieModal, setOpenDeleteMovieModal] = useState(false);
   const [searchedTerm, setSearchedTerm] = useState("");
   const [sortedList, setSortedList] = useState([]);
   const [movieId, setMovieId] = useState(null);
 
-  const getMovieId = (id) => {
+  const setMovieIdForDeleteEdit = (id) => {
     setMovieId(id);
   };
 
@@ -25,8 +25,8 @@ export const DataProvider = ({ children }) => {
       value={{
         setSortedList,
         sortedList,
-        setOpenAddMovieModal,
-        openAddMovieModal,
+        setToggleMovieModal,
+        toggleMovieModal,
         setOpenEditMovieModal,
         openEditMovieModal,
         openDeleteMovieModal,
@@ -35,7 +35,7 @@ export const DataProvider = ({ children }) => {
         setSearchedTerm,
         movieId,
         setMovieId,
-        getMovieId,
+        setMovieIdForDeleteEdit,
       }}
     >
       {children}
