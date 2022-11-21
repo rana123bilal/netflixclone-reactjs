@@ -1,7 +1,8 @@
+import React from "react";
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
 import { useContext } from "react";
-import DataContext from "../../context/DataContext";
+import DataContext from "../../context/data-context";
 
 function Header() {
   const {setOpenAddMovieModal} = useContext(DataContext)

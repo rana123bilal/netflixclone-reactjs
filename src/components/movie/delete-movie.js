@@ -1,9 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./Movies.css";
+import "./movies.css";
 import { useContext } from "react";
-import DataContext from "../../context/DataContext";
+import DataContext from "../../context/data-context";
 
 export default function DeleteMovie() {
   const {

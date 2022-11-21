@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./NavSection.css";
+import "./nav-section.css";
 import { DUMMY_DATA } from "../data";
 import { useContext } from "react";
-import DataContext from "../../context/DataContext";
+import DataContext from "../../context/data-context";
 
 function NavSection() {
   const { setSortedList } = useContext(DataContext)

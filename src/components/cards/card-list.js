@@ -1,9 +1,9 @@
 import React from "react";
-import MediaCard from "./Card";
-import "./CardList.css";
+import MediaCard from "./media-card";
+import "./card-list.css";
 import { Grid } from "@mui/material";
 import { useContext } from "react";
-import DataContext from "../../context/DataContext";
+import DataContext from "../../context/data-context";
 
 function CardList() {
   const { searchedTerm, sortedList } = useContext(DataContext);

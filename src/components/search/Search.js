@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Search.css";
 import { useContext } from "react";
-import DataContext from "../../context/DataContext";
+import DataContext from "../../context/data-context";
 
 function Search() {
   const { setSearchedTerm } = useContext(DataContext)
@@ -33,7 +33,6 @@ function Search() {
             SEARCH
           </button>
         </div>
-        {/* <div className="output">{showoutput && output}</div> */}
       </div>
     </>
   );
