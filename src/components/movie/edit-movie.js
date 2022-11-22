@@ -1,10 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import './Movies.css'
+import './movies.css'
+import { useContext } from 'react';
+import DataContext from '../../context/data-context';
 
 
-export default function EditMovie({openEditMovieModal, setOpenEditMovieModal}) {
+export default function EditMovie() {
+
+  const {openEditMovieModal, setOpenEditMovieModal} = useContext(DataContext)
   const handleClose = () => setOpenEditMovieModal(false);
 
   return (
@@ -63,7 +67,7 @@ export default function EditMovie({openEditMovieModal, setOpenEditMovieModal}) {
               RESET
             </button>
             <button type="submit" className="submit">
-              SUBMIT
+              Edit
             </button>
             </div>
           </form>

@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
-import "./Card.css";
+import "./media-card.css";
 import CardMedia from "@mui/material/CardMedia";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import kebabMenu from "../../assets/images/kebebMenu.png";
+import { useContext } from "react";
+import DataContext from "../../context/data-context";
+import PropTypes from 'prop-types';
 
-export default function MediaCard({
-  title,
-  image,
-  genre,
-  year,
-  setOpenEditMovieModal,
-  setOpenDeleteMovieModal
-}) {
+export default function MediaCard({ id, title, image, genre, year }) {
+
+  const {
+    setMovieIdForDeleteEdit,
+    openEditMovieModal,
+    openDeleteMovieModal,
+    setOpenEditMovieModal,
+    setOpenDeleteMovieModal,
+  } = useContext(DataContext);
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    setAnchorEl(false);
+  }, [openEditMovieModal, openDeleteMovieModal]);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   function editHandler() {
     setOpenEditMovieModal(true);
   }
   function deleteHandler() {
+    setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
   const handleClose = () => {
@@ -62,7 +73,7 @@ export default function MediaCard({
             horizontal: "left",
           }}
         >
-          <MenuItem onClick={editHandler} >Edit</MenuItem>
+          <MenuItem onClick={editHandler}>Edit</MenuItem>
           <MenuItem onClick={deleteHandler}>Delete</MenuItem>
         </Menu>
         {isHovering && (
@@ -82,4 +93,12 @@ export default function MediaCard({
       </Card>
     </div>
   );
+}
+
+MediaCard.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  image: PropTypes.any,
+  genre: PropTypes.string,
+  year: PropTypes.number
 }

@@ -1,9 +1,13 @@
+import React from "react";
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
+import { useContext } from "react";
+import DataContext from "../../context/data-context";
 
-function Header({ setOpenAddMovieModal }) {
+function Header() {
+  const {setToggleMovieModal} = useContext(DataContext)
   function showAddMovieModal() {
-    setOpenAddMovieModal(true);
+    setToggleMovieModal(true);
   }
 
   return (

@@ -2,9 +2,13 @@ module.exports = {
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "jest": true
+
     },
-    "extends": "plugin:react/recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
     "overrides": [
     ],
     "parserOptions": {
@@ -12,9 +16,7 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
+        "react"
     ],
     "rules": {
     }
