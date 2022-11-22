@@ -27,15 +27,18 @@
     "eject": "react-scripts eject",
     "lint": "prettier --check .",
     "lint-staged": "lint-staged",
-    "postinstall": "husky install",
-    "prepare": "husky install"
+    "postinstall": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm install lint-staged"
+    }
   },
   "lint-staged": {
     "*.js, json, css, md, html": [
       "prettier --single-quote --write",
       "git add"
-    ],
-    "*.js": "eslint --cache --fix"
+    ]
   },
   "browserslist": {
     "production": [
