@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./movies.css";
+import "./Movies.css";
 import { DUMMY_DATA } from '../data';
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
