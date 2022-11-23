@@ -1,12 +1,27 @@
-import React from "react";
-import "./AddMovie.css";
+import React from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import './movies.css'
+import { useContext } from 'react';
+import DataContext from '../../context/data-context';
 
-function AddMovies({ openAddMovieModal }) {
+
+export default function EditMovie() {
+
+  const {openEditMovieModal, setOpenEditMovieModal} = useContext(DataContext)
+  const handleClose = () => setOpenEditMovieModal(false);
+
   return (
     <div>
-      {openAddMovieModal  && (
+      <Modal
+        open={openEditMovieModal}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box>
         <div className="addMovieModal">
-          <h2>Add Movie</h2>
+          <h2>Edit Movie</h2>
           <form>
             <div className="left">
               <div className="form-title">
@@ -52,14 +67,13 @@ function AddMovies({ openAddMovieModal }) {
               RESET
             </button>
             <button type="submit" className="submit">
-              SUBMIT
+              Edit
             </button>
             </div>
           </form>
         </div>
-      )}
+        </Box>
+      </Modal>
     </div>
   );
 }
-
-export default AddMovies;

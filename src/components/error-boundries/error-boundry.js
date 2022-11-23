@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import './ErrorBoundry.css'
+import PropTypes from "prop-types";
+import "./error-boundry.css";
 
 export class ErrorBoundry extends Component {
+  static get propTypes() {
+    return { children: PropTypes.any };
+  }
   constructor(props) {
     super(props);
 

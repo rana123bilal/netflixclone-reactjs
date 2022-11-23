@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./Search.css";
+import { useContext } from "react";
+import DataContext from "../../context/data-context";
 
-function Search({ setSearchedTerm }) {
+function Search() {
+  const { setSearchedTerm } = useContext(DataContext)
   const [search, setSearch] = useState("");
 
   const onSearchChange = (event) => {
@@ -30,7 +33,6 @@ function Search({ setSearchedTerm }) {
             SEARCH
           </button>
         </div>
-        {/* <div className="output">{showoutput && output}</div> */}
       </div>
     </>
   );

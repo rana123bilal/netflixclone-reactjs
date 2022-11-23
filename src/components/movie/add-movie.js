@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./Movies.css";
+import "./movies.css";
+import { DUMMY_DATA } from '../data';
+import { useContext } from "react";
+import DataContext from "../../context/data-context";
 
-export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
+export default function AddMovie() {
+  
+  const {toggleMovieModal, setToggleMovieModal, setSortedList, sortedList} = useContext(DataContext)
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",
-    movieUrl: "",
+    movieURL: "",
     rating: "",
     genre: "",
     runtime: "",
@@ -18,7 +23,7 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
     setInputMovieData({ ...inputMovieData, title: event.target.value });
   }
   function URLHandler(event) {
-    setInputMovieData({ ...inputMovieData, movieUrl: event.target.value });
+    setInputMovieData({ ...inputMovieData, movieURL: event.target.value });
   }
   function genreHandler(event) {
     setInputMovieData({ ...inputMovieData, genre: event.target.value });
@@ -38,16 +43,29 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
 
   function addMovieHandler(event) {
     event.preventDefault();
-    console.log(inputMovieData);
-    setInputMovieData('')
+    const {title, releaseDate, movieURL, rating, genre, runtime, overview} = inputMovieData
+    const year = releaseDate.split("-")[0]
+    const id = sortedList.length + 1
+    const newMovie = {title, year, movieURL, rating, genre, runtime, overview, id}
+    setSortedList([ ...DUMMY_DATA, newMovie]);
+
+setInputMovieData({
+  title: "",
+  releaseDate: "",
+  movieURL: "",
+  rating: "",
+  genre: "",
+  runtime: "",
+  overview: "",
+})
   }
 
-  const handleClose = () => setOpenAddMovieModal(false);
+  const handleClose = () => setToggleMovieModal(false);
 
   return (
     <div>
       <Modal
-        open={openAddMovieModal}
+        open={toggleMovieModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -72,7 +90,7 @@ export default function AddMovie({ openAddMovieModal, setOpenAddMovieModal }) {
                     type="text"
                     placeholder="Enter URL"
                     onChange={URLHandler}
-                    value={inputMovieData.movieUrl}
+                    value={inputMovieData.movieURL}
                   />
                 </div>
                 <div>
