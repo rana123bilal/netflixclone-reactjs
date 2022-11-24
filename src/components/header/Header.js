@@ -5,7 +5,7 @@ import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function Header() {
-  const {setToggleMovieModal} = useContext(DataContext)
+  const { setToggleMovieModal } = useContext(DataContext);
   function showAddMovieModal() {
     setToggleMovieModal(true);
   }

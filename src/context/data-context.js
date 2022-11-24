@@ -11,6 +11,7 @@ export const DataProvider = ({ children }) => {
   const [searchedTerm, setSearchedTerm] = useState("");
   const [sortedList, setSortedList] = useState([]);
   const [movieId, setMovieId] = useState(null);
+  const [viewMovieDetails, setViewMovieDetails] = useState(false)
 
   const setMovieIdForDeleteEdit = (id) => {
     setMovieId(id);
@@ -35,6 +36,8 @@ export const DataProvider = ({ children }) => {
         setSearchedTerm,
         movieId,
         setMovieId,
+        viewMovieDetails,
+        setViewMovieDetails,
         setMovieIdForDeleteEdit,
       }}
     >

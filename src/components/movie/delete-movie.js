@@ -11,13 +11,13 @@ export default function DeleteMovie() {
     setOpenDeleteMovieModal,
     setSortedList,
     movieId,
-    sortedList
-  } = useContext(DataContext)
+    sortedList,
+  } = useContext(DataContext);
   const handleClose = () => setOpenDeleteMovieModal(false);
 
   const deleteHandler = (id) => {
     setSortedList(sortedList.filter((movie) => movie.id !== id));
-    handleClose()
+    handleClose();
   };
 
   return (

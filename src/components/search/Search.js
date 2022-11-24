@@ -4,11 +4,11 @@ import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function Search() {
-  const { setSearchedTerm } = useContext(DataContext)
+  const { setSearchedTerm } = useContext(DataContext);
   const [search, setSearch] = useState("");
 
   const onSearchChange = (event) => {
-    setSearch(event.target.value);   
+    setSearch(event.target.value);
   };
 
   const searchButtonHandler = (event) => {

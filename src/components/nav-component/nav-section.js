@@ -6,7 +6,7 @@ import DataContext from "../../context/data-context";
 import { SORT_TYPES } from "../../Constants";
 
 function NavSection() {
-  const { setSortedList } = useContext(DataContext)
+  const { setSortedList } = useContext(DataContext);
   const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {

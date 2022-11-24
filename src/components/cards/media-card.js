@@ -7,16 +7,16 @@ import MenuItem from "@mui/material/MenuItem";
 import kebabMenu from "../../assets/images/kebebMenu.png";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function MediaCard({ id, title, image, genre, year }) {
-
   const {
     setMovieIdForDeleteEdit,
     openEditMovieModal,
     openDeleteMovieModal,
     setOpenEditMovieModal,
     setOpenDeleteMovieModal,
+    setViewMovieDetails,
   } = useContext(DataContext);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -48,6 +48,10 @@ export default function MediaCard({ id, title, image, genre, year }) {
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+  const cardHandler = () => {
+    setViewMovieDetails(true);
+    setMovieIdForDeleteEdit(id);
+  };
   return (
     <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       <Card sx={{ maxWidth: 345 }}>
@@ -57,6 +61,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
           width="345"
           image={image}
           alt="green iguana"
+          onClick={cardHandler}
         />
         <Menu
           id="demo-positioned-menu"
@@ -100,5 +105,5 @@ MediaCard.propTypes = {
   title: PropTypes.string,
   image: PropTypes.any,
   genre: PropTypes.string,
-  year: PropTypes.number
-}
+  year: PropTypes.number,
+};
