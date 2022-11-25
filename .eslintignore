@@ -1,0 +1,9 @@
+dist
+node_modules
+lighthouse
+reports
+netstorage
+user-journey
+translations-cron
+deploy/manifest.js
+packages

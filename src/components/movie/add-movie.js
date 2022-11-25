@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
-import { DUMMY_DATA } from '../data';
-import { useContext } from "react";
+import DUMMY_DATA from "../data";
 import DataContext from "../../context/data-context";
 
 export default function AddMovie() {
-  
-  const {toggleMovieModal, setToggleMovieModal, setSortedList, sortedList} = useContext(DataContext)
+  const { toggleMovieModal, setToggleMovieModal, setSortedList, sortedList } =
+    useContext(DataContext);
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",
@@ -43,21 +42,31 @@ export default function AddMovie() {
 
   function addMovieHandler(event) {
     event.preventDefault();
-    const {title, releaseDate, movieURL, rating, genre, runtime, overview} = inputMovieData
-    const year = releaseDate.split("-")[0]
-    const id = sortedList.length + 1
-    const newMovie = {title, year, movieURL, rating, genre, runtime, overview, id}
-    setSortedList([ ...DUMMY_DATA, newMovie]);
+    const { title, releaseDate, movieURL, rating, genre, runtime, overview } =
+      inputMovieData;
+    const year = releaseDate.split("-")[0];
+    const id = sortedList.length + 1;
+    const newMovie = {
+      title,
+      year,
+      movieURL,
+      rating,
+      genre,
+      runtime,
+      overview,
+      id,
+    };
+    setSortedList([...DUMMY_DATA, newMovie]);
 
-setInputMovieData({
-  title: "",
-  releaseDate: "",
-  movieURL: "",
-  rating: "",
-  genre: "",
-  runtime: "",
-  overview: "",
-})
+    setInputMovieData({
+      title: "",
+      releaseDate: "",
+      movieURL: "",
+      rating: "",
+      genre: "",
+      runtime: "",
+      overview: "",
+    });
   }
 
   const handleClose = () => setToggleMovieModal(false);
@@ -95,7 +104,11 @@ setInputMovieData({
                 </div>
                 <div>
                   <label>Genre</label>
-                  <select className="options" onChange={genreHandler} value={inputMovieData.genre}>
+                  <select
+                    className="options"
+                    onChange={genreHandler}
+                    value={inputMovieData.genre}
+                  >
                     <option>Select Genre</option>
                     <option>Action</option>
                     <option>Comedy</option>

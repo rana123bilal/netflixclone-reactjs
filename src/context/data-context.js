@@ -1,10 +1,9 @@
-import React from "react";
-import PropTypes from 'prop-types';
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useMemo } from "react";
+import PropTypes from "prop-types";
 
 const DataContext = createContext({});
 
-export const DataProvider = ({ children }) => {
+export function DataProvider({ children }) {
   const [toggleMovieModal, setToggleMovieModal] = useState(false);
   const [openEditMovieModal, setOpenEditMovieModal] = useState(false);
   const [openDeleteMovieModal, setOpenDeleteMovieModal] = useState(false);
@@ -20,30 +19,36 @@ export const DataProvider = ({ children }) => {
     document.title = "Netflix Clone";
   }, []);
 
-  return (
-    <DataContext.Provider
-      value={{
-        setSortedList,
-        sortedList,
-        setToggleMovieModal,
-        toggleMovieModal,
-        setOpenEditMovieModal,
-        openEditMovieModal,
-        openDeleteMovieModal,
-        setOpenDeleteMovieModal,
-        searchedTerm,
-        setSearchedTerm,
-        movieId,
-        setMovieId,
-        setMovieIdForDeleteEdit,
-      }}
-    >
-      {children}
-    </DataContext.Provider>
+  const values = useMemo(
+    () => ({
+      setSortedList,
+      sortedList,
+      setToggleMovieModal,
+      toggleMovieModal,
+      setOpenEditMovieModal,
+      openEditMovieModal,
+      openDeleteMovieModal,
+      setOpenDeleteMovieModal,
+      searchedTerm,
+      setSearchedTerm,
+      movieId,
+      setMovieId,
+      setMovieIdForDeleteEdit,
+    }),
+    [
+      movieId,
+      openDeleteMovieModal,
+      openEditMovieModal,
+      searchedTerm,
+      sortedList,
+      toggleMovieModal,
+    ]
   );
-};
+
+  return <DataContext.Provider value={values}>{children}</DataContext.Provider>;
+}
 DataProvider.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default DataContext;

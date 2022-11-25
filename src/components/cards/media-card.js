@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Card from "@mui/material/Card";
 import "./media-card.css";
 import CardMedia from "@mui/material/CardMedia";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import PropTypes from "prop-types";
 import kebabMenu from "../../assets/images/kebebMenu.png";
-import { useContext } from "react";
 import DataContext from "../../context/data-context";
-import PropTypes from 'prop-types';
 
 export default function MediaCard({ id, title, image, genre, year }) {
-
   const {
     setMovieIdForDeleteEdit,
     openEditMovieModal,
@@ -38,9 +36,9 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
-  const handleClose = () => {
+  function handleClose() {
     setAnchorEl(null);
-  };
+  }
   const handleMouseOver = () => {
     setIsHovering(true);
   };
@@ -49,7 +47,12 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setIsHovering(false);
   };
   return (
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <div
+      onMouseOver={handleMouseOver}
+      onFocus={handleMouseOver}
+      onBlur={handleMouseOut}
+      onMouseOut={handleMouseOut}
+    >
       <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
@@ -63,7 +66,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
           aria-labelledby="demo-positioned-button"
           anchorEl={anchorEl}
           open={open}
-          onClose={handleClose}
+          onClose={() => handleClose()}
           anchorOrigin={{
             vertical: "top",
             horizontal: "left",
@@ -100,5 +103,5 @@ MediaCard.propTypes = {
   title: PropTypes.string,
   image: PropTypes.any,
   genre: PropTypes.string,
-  year: PropTypes.number
-}
+  year: PropTypes.number,
+};
