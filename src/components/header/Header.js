@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
-import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function Header() {
-  const {setToggleMovieModal} = useContext(DataContext)
+  const { setToggleMovieModal } = useContext(DataContext);
   function showAddMovieModal() {
     setToggleMovieModal(true);
   }
@@ -18,6 +17,7 @@ function Header() {
       <div>
         <button
           className="add-movie"
+          type="button"
           onClick={() => {
             showAddMovieModal();
           }}

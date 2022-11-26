@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./nav-section.css";
-import { DUMMY_DATA } from "../data";
-import { useContext } from "react";
+import DUMMY_DATA from "../data";
 import DataContext from "../../context/data-context";
-import { SORT_TYPES } from "../../Constants";
+import SORT_TYPES from "../../Constants";
 
 function NavSection() {
-  const { setSortedList } = useContext(DataContext)
+  const { setSortedList } = useContext(DataContext);
   const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {
