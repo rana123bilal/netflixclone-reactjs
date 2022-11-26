@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CloseIcon from '@mui/icons-material/Close';
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
@@ -69,24 +70,24 @@ export default function AddMovie() {
       overview: "",
     });
   }
-
-  const handleClose = () => setToggleMovieModal(false);
-
   return (
     <div>
       <Modal
         open={toggleMovieModal}
-        onClose={handleClose}
+        onClose={() => setToggleMovieModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box>
           <div className="addMovieModal">
-            <h2>Add Movie</h2>
+            <div className="head">
+            <h2>ADD MOVIE</h2>
+            <CloseIcon className="closeicon" onClick={() => setToggleMovieModal(false)}/>
+            </div>
             <form>
               <div className="left">
                 <div className="form-title">
-                  <label>Title</label>
+                  <label>TITLE</label>
                   <input
                     type="text"
                     placeholder="Enter Title"
@@ -95,7 +96,7 @@ export default function AddMovie() {
                   />
                 </div>
                 <div className="URL">
-                  <label>Movie URL</label>
+                  <label>MOVIE URL</label>
                   <input
                     type="text"
                     placeholder="Enter URL"
@@ -103,24 +104,24 @@ export default function AddMovie() {
                     value={inputMovieData.movieURL}
                   />
                 </div>
-                <div>
-                  <label>Genre</label>
+                <div className="genre">
+                  <label>GENRE</label>
                   <select
                     className="options"
                     onChange={genreHandler}
                     value={inputMovieData.genre}
                   >
-                    <option>Select Genre</option>
-                    <option>Action</option>
-                    <option>Comedy</option>
-                    <option>Drama</option>
-                    <option>Horror</option>
+                    <option>SELECT GENRE</option>
+                    <option>ACTION</option>
+                    <option>COMEDY</option>
+                    <option>DRAMA</option>
+                    <option>HORROR</option>
                   </select>
                 </div>
               </div>
               <div className="right">
                 <div className="date">
-                  <label>Release Date</label>
+                  <label>RELEASE DATE</label>
                   <input
                     type="date"
                     placeholder="Enter Release Date"
@@ -129,7 +130,7 @@ export default function AddMovie() {
                   />
                 </div>
                 <div className="ratings">
-                  <label>Ratings</label>
+                  <label>RATINGS</label>
                   <input
                     type="number"
                     placeholder="Enter Rating"
@@ -137,8 +138,8 @@ export default function AddMovie() {
                     value={inputMovieData.rating}
                   />
                 </div>
-                <div>
-                  <label>Runtime</label>
+                <div className="runtime">
+                  <label>RUNTIME</label>
                   <input
                     type="text"
                     placeholder="Enter Minutes"
@@ -149,7 +150,7 @@ export default function AddMovie() {
               </div>
 
               <div className="text-area">
-                <label>Overview</label>
+                <label>OVERVIEW</label>
                 <textarea
                   type="textarea"
                   placeholder="Enter Description"

@@ -9,6 +9,8 @@
     flex: 0 1 calc(30% - 110px);
  
 }
+
+
 .text{
     color: white;
     display: flex;
@@ -38,9 +40,10 @@
 
 .card img{
     width: 323.41px;
-    height: 486px;
+    /* height: 486px; */
     
 }
+    
 
 .year{
     display: flex;
@@ -51,13 +54,4 @@
     border-radius: 4px;
     width: 66px;
     height: 26px;
-}
-
-.kebab-menu{
-    width: 30px;
-    height: 0px;
-    left: 290px;
-    top: -487px;
-    position: relative;
-    padding: 0px;
 }

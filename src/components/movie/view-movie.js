@@ -13,7 +13,7 @@ function ViewMovie() {
     setViewMovie(foundMovie);
   }, [movieId, viewMovie]);
 
-  function onclickSearch() {
+  function closeViewMovieDetails() {
     setViewMovieDetails(false);
   }
 
@@ -33,7 +33,7 @@ function ViewMovie() {
             </div>
             <p>{viewMovie.overview}</p>
           </div>
-          <SearchIcon className="searchIcon" onClick={onclickSearch} />
+          <SearchIcon className="searchIcon" onClick={closeViewMovieDetails} />
         </div>
       )}
     </>

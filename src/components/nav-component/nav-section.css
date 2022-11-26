@@ -32,7 +32,16 @@
     gap: 1rem;
 
 }
-
+.sort-options{
+    opacity: 80%;
+    background: #323232;
+    font-size: 15px;
+    border: none;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-style: normal;
+    padding: 10px;
+}
 
 .right-links-container{
     display: flex;

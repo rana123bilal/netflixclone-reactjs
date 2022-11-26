@@ -41,19 +41,16 @@ export default function MediaCard({ id, title, image, genre, year }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-  const cardHandler = () => {
+  const toggleCard = () => {
     setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);
   };
   return (
-    <div onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <div
+      // className="card"
+      // onMouseOver={() => setIsHovering(true)}
+      // onMouseOut={() => setIsHovering(false)}
+    >
       <Card sx={{ maxWidth: 345 }}>
         <CardMedia
           component="img"
@@ -61,7 +58,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
           width="345"
           image={image}
           alt="green iguana"
-          onClick={cardHandler}
+          onClick={toggleCard}
         />
         <Menu
           id="demo-positioned-menu"
@@ -81,11 +78,10 @@ export default function MediaCard({ id, title, image, genre, year }) {
           <MenuItem onClick={editHandler}>Edit</MenuItem>
           <MenuItem onClick={deleteHandler}>Delete</MenuItem>
         </Menu>
-        {isHovering && (
-          <div className="kebab-menu" onClick={handleClick}>
-            <img src={kebabMenu} alt="menu" />
-          </div>
-        )}
+        <div className="kebab-menu" onClick={handleClick}>
+          <img src={kebabMenu} alt="menu" />
+        </div>
+
         <div className="text">
           <div className="title">
             <h3>{title}</h3>

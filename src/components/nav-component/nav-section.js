@@ -46,12 +46,12 @@ function NavSection() {
           <div>SORT BY</div>
           <div>
             <select
-              className="options"
+              className="sort-options"
               onChange={(e) => setSortValue(e.target.value)}
             >
-              <option value="title">Title</option>
-              <option value="genre">Genre </option>
-              <option value="year">Release Year</option>
+              <option value="title">TITLE</option>
+              <option value="genre">GENRE </option>
+              <option value="year">RELEASE YEAR</option>
             </select>
           </div>
         </div>

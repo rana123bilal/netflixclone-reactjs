@@ -20,6 +20,7 @@
     margin-top: 10px;
     font-size: 17px;
     cursor: pointer;
+    opacity: 68%;
 }
 
 body.active-modal {
