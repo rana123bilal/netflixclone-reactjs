@@ -1,0 +1,90 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.13.1"
+    }
+  },
+  // "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["*/.js"],
+      "env": {
+        "jest": true,
+        "mocha": true
+      },
+      "rules": {
+        "no-use-before-define": [
+          "error",
+          {
+            "functions": false,
+            "classes": true
+          }
+        ],
+        "no-trailing-spaces": [2, { "skipBlankLines": true }],
+        "no-multiple-empty-lines": [
+          "error",
+          {
+            "max": 1,
+            "maxEOF": 1
+          }
+        ],
+        "comma-dangle": [
+          "error",
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "ignore"
+          }
+        ],
+        "import/no-named-as-default": 0,
+        "react-hooks/exhaustive-deps": "off"
+      }
+    },
+    {
+      "files": ["**/*spec.js"],
+      "rules": {
+        "no-unused-expressions": 0,
+        "global-require": "warn"
+      }
+    }
+  ],
+  "plugins": ["react"],
+  "rules": {
+    "no-console": 1,
+    "react/jsx-uses-vars": 2,
+    "linebreak-style": ["error", "unix"],
+    "semi": ["error", "always"],
+    "no-trailing-spaces": [
+      1,
+      {
+        "skipBlankLines": true
+      }
+    ]
+  }
+}
