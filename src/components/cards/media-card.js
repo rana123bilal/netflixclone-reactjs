@@ -15,9 +15,6 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setViewMovieDetails,
   } = useContext(DataContext);
 
-  const kebabMenuHandler =() =>{
-  }
-
   function editCardHandler() {
     setOpenEditMovieModal(true);
   }
@@ -51,7 +48,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
             onClick={toggleCard}
           />
           <div className="menu-dropdown">
-            <div className="kebab-menu" onClick={kebabMenuHandler}>
+            <div className="kebab-menu">
               <img src={kebabMenu} alt="menu"/>
             </div>
            <div className="dropdown-menu">
