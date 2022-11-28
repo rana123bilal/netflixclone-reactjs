@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { createContext, useState, useEffect } from "react";
 
 const DataContext = createContext({});
@@ -8,10 +8,10 @@ export const DataProvider = ({ children }) => {
   const [toggleMovieModal, setToggleMovieModal] = useState(false);
   const [openEditMovieModal, setOpenEditMovieModal] = useState(false);
   const [openDeleteMovieModal, setOpenDeleteMovieModal] = useState(false);
-  const [inputSearchedTerm, setInputSearchedTerm] = useState("");
+  const [inputSearchTerm, setInputSearchTerm] = useState("");
   const [sortedMovieList, setSortedMovieList] = useState([]);
   const [movieId, setMovieId] = useState(null);
-  const [viewMovieDetails, setViewMovieDetails] = useState(false)
+  const [viewMovieDetails, setViewMovieDetails] = useState(false);
 
   const setMovieIdForDeleteEdit = (id) => {
     setMovieId(id);
@@ -32,8 +32,8 @@ export const DataProvider = ({ children }) => {
         openEditMovieModal,
         openDeleteMovieModal,
         setOpenDeleteMovieModal,
-        inputSearchedTerm,
-        setInputSearchedTerm,
+        inputSearchTerm,
+        setInputSearchTerm,
         movieId,
         setMovieId,
         viewMovieDetails,
@@ -46,7 +46,7 @@ export const DataProvider = ({ children }) => {
   );
 };
 DataProvider.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
 };
 
 export default DataContext;

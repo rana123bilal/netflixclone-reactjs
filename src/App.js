@@ -19,17 +19,15 @@ function App() {
   return (
     <div className="App">
       <ErrorBoundry>
-        <div className="header">
-       {!viewMovieDetails && <Header />}
-       </div>
+        <div className="header">{!viewMovieDetails && <Header />}</div>
         <AddMovie />
         {!viewMovieDetails && <Search />}
         {viewMovieDetails && <ViewMovie />}
-        <div className="body">
-        <NavSection />
-        <CardList />
-        <EditMovie />
-        <DeleteMovie />
+        <div className="movie-list-container">
+          <NavSection />
+          <CardList />
+          <EditMovie />
+          <DeleteMovie />
         </div>
         <Footer />
       </ErrorBoundry>

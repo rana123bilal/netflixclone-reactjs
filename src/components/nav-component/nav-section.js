@@ -11,9 +11,9 @@ function NavSection() {
 
   useEffect(() => {
     const sortMovieList = (type) => {
-      const sortProperty = SORT_TYPES[type];
+      const sortType = SORT_TYPES[type];
       const sorted = [...DUMMY_DATA].sort((a, b) =>
-        a[sortProperty] < b[sortProperty] ? -1 : 1
+        a[sortType] < b[sortType] ? -1 : 1
       );
       setSortedMovieList(sorted);
     };

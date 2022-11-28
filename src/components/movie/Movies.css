@@ -194,6 +194,11 @@ textarea {
     margin-top: 1px;
 }
 
+.close-icon-in-delete{
+    margin-left: 571px;
+    margin-top: 0px;
+}
+
 .confirm-delete{
     margin-left: 451px;
     margin-top: 58px;

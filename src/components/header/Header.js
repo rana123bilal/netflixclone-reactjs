@@ -13,11 +13,11 @@ function Header() {
   return (
     <div className="header-container">
       <div className="logo">
-        <img src={logo} alt="netflixrullet" />
+        <img src={logo} alt="netflix-roulette"/>
       </div>
       <div>
         <button
-          className="add-movie"
+          className="add-movie-btn"
           onClick={() => {
             showAddMovieModal();
           }}

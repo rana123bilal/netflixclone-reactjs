@@ -81,5 +81,5 @@ MediaCard.propTypes = {
   title: PropTypes.string,
   image: PropTypes.any,
   genre: PropTypes.string,
-  year: PropTypes.number,
+  year: PropTypes.string,
 };

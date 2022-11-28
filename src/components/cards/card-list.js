@@ -6,14 +6,14 @@ import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function CardList() {
-  const { inputSearchedTerm, sortedMovieList } = useContext(DataContext);
-  const filteredMovieList = sortedMovieList.filter((val) => {
-    if (inputSearchedTerm !== "") {
-      return val.title
+  const { inputSearchTerm, sortedMovieList } = useContext(DataContext);
+  const filteredMovieList = sortedMovieList.filter((value) => {
+    if (inputSearchTerm !== "") {
+      return value.title
         .toLocaleLowerCase()
-        .includes(inputSearchedTerm.toLocaleLowerCase());
+        .includes(inputSearchTerm.toLocaleLowerCase());
     }
-    return val;
+    return value;
   });
 
   return (
@@ -28,7 +28,7 @@ function CardList() {
                 title={movie.title}
                 image={movie.movieURL}
                 genre={movie.genre}
-                year={movie.year}
+                year={movie.year.toString()}
               />
             </Grid>
           );

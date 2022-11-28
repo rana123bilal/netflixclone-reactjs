@@ -12,8 +12,8 @@ function ViewMovie() {
   const [viewMovieData, setViewMovieData] = useState(null);
 
   useEffect(() => {
-    const foundMovieDataWithID = DUMMY_DATA.find((movie) => movie.id === movieId);
-    setViewMovieData(foundMovieDataWithID);
+    const findMovieDataWithId = DUMMY_DATA.find((movie) => movie.id === movieId);
+    setViewMovieData(findMovieDataWithId);
   }, [movieId, viewMovieData]);
 
   function closeViewMovieDetails() {
