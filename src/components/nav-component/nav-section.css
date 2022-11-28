@@ -2,12 +2,12 @@
     color: white;
     display: flex;
     justify-content: space-around;
-    gap: 2rem;
+    gap: 10rem;
+    background-color: #232323;
 }
 
 .left-links-container a{
     display: flex;
-    gap : 30px;
     color: inherit;
     text-decoration: none;
 }
@@ -21,7 +21,6 @@
     width: 100%;
     border-radius: 1px;
     transition: 0.5s ease;
-    display: inline-block;
 }
 
 .left-links-container ul{
@@ -34,7 +33,7 @@
 }
 .sort-options{
     opacity: 80%;
-    background: #323232;
+    background: #232323;
     font-size: 15px;
     border: none;
     color: #FFFFFF;
@@ -46,14 +45,13 @@
 .right-links-container{
     display: flex;
     gap: 30px;
-    /* margin-top: -21px; */
     justify-content: center;
     align-items: center;
 }
 
 hr{
-    margin-top: 20px;
-    width: 1110px;
+    margin-top: 1px;
+    width: 1178px;
     color: #424242;
     background-color: #424242;
 }
@@ -71,6 +69,6 @@ hr{
   .found-movies{
     color: #FFFFFF;
     font-size: large;
-    margin-left: 190px;
+    margin-left: 164px;
     margin-top: 16px;
   }

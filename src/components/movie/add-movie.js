@@ -8,8 +8,7 @@ import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 export default function AddMovie() {
-  const { toggleMovieModal, setToggleMovieModal, setSortedList, sortedList } =
-    useContext(DataContext);
+  const { toggleMovieModal, setToggleMovieModal, setSortedMovieList, sortedMovieList } = useContext(DataContext);
   const [inputMovieData, setInputMovieData] = useState({
     title: "",
     releaseDate: "",
@@ -20,35 +19,34 @@ export default function AddMovie() {
     overview: "",
   });
 
-  function titleHandler(event) {
+  function titleInputHandler(event) {
     setInputMovieData({ ...inputMovieData, title: event.target.value });
   }
-  function URLHandler(event) {
+  function URLInputHandler(event) {
     setInputMovieData({ ...inputMovieData, movieURL: event.target.value });
   }
-  function genreHandler(event) {
+  function genreInputHandler(event) {
     setInputMovieData({ ...inputMovieData, genre: event.target.value });
   }
-  function releaseDateHandler(event) {
+  function releaseDateInputHandler(event) {
     setInputMovieData({ ...inputMovieData, releaseDate: event.target.value });
   }
-  function ratingHandler(event) {
+  function ratingInputHandler(event) {
     setInputMovieData({ ...inputMovieData, rating: event.target.value });
   }
-  function runtimeHandler(event) {
+  function runtimeInputHandler(event) {
     setInputMovieData({ ...inputMovieData, runtime: event.target.value });
   }
-  function overviewHandler(event) {
+  function overviewInputHandler(event) {
     setInputMovieData({ ...inputMovieData, overview: event.target.value });
   }
 
   function addMovieHandler(event) {
     event.preventDefault();
-    const { title, releaseDate, movieURL, rating, genre, runtime, overview } =
-      inputMovieData;
+    const { title, releaseDate, movieURL, rating, genre, runtime, overview } = inputMovieData;
     const year = releaseDate.split("-")[0];
-    const id = sortedList.length + 1;
-    const newMovie = {
+    const id = sortedMovieList.length + 1;
+    const newMovieDetails = {
       title,
       year,
       movieURL,
@@ -58,7 +56,7 @@ export default function AddMovie() {
       overview,
       id,
     };
-    setSortedList([...DUMMY_DATA, newMovie]);
+    setSortedMovieList([...DUMMY_DATA, newMovieDetails]);
 
     setInputMovieData({
       title: "",
@@ -91,7 +89,7 @@ export default function AddMovie() {
                   <input
                     type="text"
                     placeholder="Enter Title"
-                    onChange={titleHandler}
+                    onChange={titleInputHandler}
                     value={inputMovieData.title}
                   />
                 </div>
@@ -100,7 +98,7 @@ export default function AddMovie() {
                   <input
                     type="text"
                     placeholder="Enter URL"
-                    onChange={URLHandler}
+                    onChange={URLInputHandler}
                     value={inputMovieData.movieURL}
                   />
                 </div>
@@ -108,10 +106,10 @@ export default function AddMovie() {
                   <label>GENRE</label>
                   <select
                     className="options"
-                    onChange={genreHandler}
+                    onChange={genreInputHandler}
                     value={inputMovieData.genre}
                   >
-                    <option>SELECT GENRE</option>
+                    <option type="checkbox">SELECT GENRE</option>
                     <option>ACTION</option>
                     <option>COMEDY</option>
                     <option>DRAMA</option>
@@ -125,7 +123,7 @@ export default function AddMovie() {
                   <input
                     type="date"
                     placeholder="Enter Release Date"
-                    onChange={releaseDateHandler}
+                    onChange={releaseDateInputHandler}
                     value={inputMovieData.releaseDate}
                   />
                 </div>
@@ -134,7 +132,7 @@ export default function AddMovie() {
                   <input
                     type="number"
                     placeholder="Enter Rating"
-                    onChange={ratingHandler}
+                    onChange={ratingInputHandler}
                     value={inputMovieData.rating}
                   />
                 </div>
@@ -143,7 +141,7 @@ export default function AddMovie() {
                   <input
                     type="text"
                     placeholder="Enter Minutes"
-                    onChange={runtimeHandler}
+                    onChange={runtimeInputHandler}
                     value={inputMovieData.runtime}
                   />
                 </div>
@@ -154,7 +152,7 @@ export default function AddMovie() {
                 <textarea
                   type="textarea"
                   placeholder="Enter Description"
-                  onChange={overviewHandler}
+                  onChange={overviewInputHandler}
                   value={inputMovieData.overview}
                 />
               </div>

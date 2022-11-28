@@ -6,23 +6,23 @@ import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function CardList() {
-  const { searchedTerm, sortedList } = useContext(DataContext);
-  const finalMovies = sortedList.filter((val) => {
-    if (searchedTerm !== "") {
+  const { inputSearchedTerm, sortedMovieList } = useContext(DataContext);
+  const filteredMovieList = sortedMovieList.filter((val) => {
+    if (inputSearchedTerm !== "") {
       return val.title
         .toLocaleLowerCase()
-        .includes(searchedTerm.toLocaleLowerCase());
+        .includes(inputSearchedTerm.toLocaleLowerCase());
     }
     return val;
   });
 
   return (
     <>
-      <div className="found-movies">{finalMovies.length} movies found</div>
+      <div className="found-movies">{filteredMovieList.length} movies found</div>
       <Grid>
-        {finalMovies.map((movie, i) => {
+        {filteredMovieList.map((movie, i) => {
           return (
-            <Grid className="wrapper" key={i}>
+            <Grid className="card-wrapper" key={i}>
               <MediaCard
                 id={movie.id}
                 title={movie.title}

@@ -6,7 +6,7 @@ import DataContext from "../../context/data-context";
 import { SORT_TYPES } from "../../Constants";
 
 function NavSection() {
-  const { setSortedList } = useContext(DataContext);
+  const { setSortedMovieList } = useContext(DataContext);
   const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {
@@ -15,10 +15,10 @@ function NavSection() {
       const sorted = [...DUMMY_DATA].sort((a, b) =>
         a[sortProperty] < b[sortProperty] ? -1 : 1
       );
-      setSortedList(sorted);
+      setSortedMovieList(sorted);
     };
     sortMovieList(sortValue);
-  }, [setSortedList, sortValue]);
+  }, [setSortedMovieList, sortValue]);
 
   return (
     <>

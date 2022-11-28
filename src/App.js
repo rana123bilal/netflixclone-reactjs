@@ -11,7 +11,7 @@ import ErrorBoundry from "./components/error-boundries/error-boundry";
 import AddMovie from "./components/movie/add-movie";
 import EditMovie from "./components/movie/edit-movie";
 import DeleteMovie from "./components/movie/delete-movie";
-import ViewMovie from "./components/movie/view-movie";
+import ViewMovie from "./components/movie/view-movie-details";
 
 function App() {
   const { viewMovieDetails } = useContext(DataContext);
@@ -19,14 +19,18 @@ function App() {
   return (
     <div className="App">
       <ErrorBoundry>
-        <Header />
+        <div className="header">
+       {!viewMovieDetails && <Header />}
+       </div>
         <AddMovie />
         {!viewMovieDetails && <Search />}
         {viewMovieDetails && <ViewMovie />}
+        <div className="body">
         <NavSection />
         <CardList />
         <EditMovie />
         <DeleteMovie />
+        </div>
         <Footer />
       </ErrorBoundry>
     </div>

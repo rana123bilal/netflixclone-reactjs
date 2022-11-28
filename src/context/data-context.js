@@ -8,8 +8,8 @@ export const DataProvider = ({ children }) => {
   const [toggleMovieModal, setToggleMovieModal] = useState(false);
   const [openEditMovieModal, setOpenEditMovieModal] = useState(false);
   const [openDeleteMovieModal, setOpenDeleteMovieModal] = useState(false);
-  const [searchedTerm, setSearchedTerm] = useState("");
-  const [sortedList, setSortedList] = useState([]);
+  const [inputSearchedTerm, setInputSearchedTerm] = useState("");
+  const [sortedMovieList, setSortedMovieList] = useState([]);
   const [movieId, setMovieId] = useState(null);
   const [viewMovieDetails, setViewMovieDetails] = useState(false)
 
@@ -24,16 +24,16 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
-        setSortedList,
-        sortedList,
+        setSortedMovieList,
+        sortedMovieList,
         setToggleMovieModal,
         toggleMovieModal,
         setOpenEditMovieModal,
         openEditMovieModal,
         openDeleteMovieModal,
         setOpenDeleteMovieModal,
-        searchedTerm,
-        setSearchedTerm,
+        inputSearchedTerm,
+        setInputSearchedTerm,
         movieId,
         setMovieId,
         viewMovieDetails,
