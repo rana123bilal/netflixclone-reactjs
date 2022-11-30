@@ -29,6 +29,7 @@
 .card img{
     width: 323.41px;
     height: 486px;
+    cursor: pointer;
     
 }
     
@@ -56,6 +57,7 @@
 
 .card-image{
     height: 500px;
+    cursor: pointer;
 }
 
 .kebab-menu{

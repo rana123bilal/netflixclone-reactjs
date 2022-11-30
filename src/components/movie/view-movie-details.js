@@ -5,16 +5,15 @@ import logo from "../../assets/images/logo2.png";
 import oval from "../../assets/images/Oval.png";
 import DataContext from "../../context/data-context";
 import SearchIcon from "@mui/icons-material/Search";
-import { DUMMY_DATA } from "../data";
 
 function ViewMovie() {
-  const { setViewMovieDetails, movieId } = useContext(DataContext);
+  const { setViewMovieDetails, movieId, sortedMovieList } = useContext(DataContext);
   const [viewMovieData, setViewMovieData] = useState(null);
 
   useEffect(() => {
-    const findMovieDataWithId = DUMMY_DATA.find((movie) => movie.id === movieId);
+    const findMovieDataWithId = sortedMovieList.find((movie) => movie.id === movieId);
     setViewMovieData(findMovieDataWithId);
-  }, [movieId, viewMovieData]);
+  }, [movieId, viewMovieData, sortedMovieList]);
 
   function closeViewMovieDetails() {
     setViewMovieDetails(false);
