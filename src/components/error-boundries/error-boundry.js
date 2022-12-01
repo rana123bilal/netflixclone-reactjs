@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./error-boundry.css";
 
-export class ErrorBoundry extends Component {
-  static get propTypes() {
-    return { children: PropTypes.any };
-  }
+class ErrorBoundry extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       hasError: false,
     };
@@ -29,3 +25,10 @@ export class ErrorBoundry extends Component {
 }
 
 export default ErrorBoundry;
+
+ErrorBoundry.propTypes = {
+  children: PropTypes.any,
+};
+ErrorBoundry.defaultProps = {
+  children: PropTypes.any,
+};
