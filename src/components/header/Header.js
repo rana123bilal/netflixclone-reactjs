@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../../assets/images/logo.png";
 import "./Header.css";
+import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 function Header() {
@@ -12,12 +13,11 @@ function Header() {
   return (
     <div className="header-container">
       <div className="logo">
-        <img src={logo} alt="netflixrullet" />
+        <img src={logo} alt="netflix-roulette"/>
       </div>
       <div>
         <button
-          className="add-movie"
-          type="button"
+          className="add-movie-btn"
           onClick={() => {
             showAddMovieModal();
           }}

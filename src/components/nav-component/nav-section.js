@@ -1,23 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav-section.css";
-import DUMMY_DATA from "../data";
+import { DUMMY_DATA } from "../data";
+import { useContext } from "react";
 import DataContext from "../../context/data-context";
-import SORT_TYPES from "../../Constants";
+import { SORT_TYPES } from "../../Constants";
 
 function NavSection() {
-  const { setSortedList } = useContext(DataContext);
+  const { setSortedMovieList } = useContext(DataContext);
   const [sortValue, setSortValue] = useState("");
 
   useEffect(() => {
     const sortMovieList = (type) => {
-      const sortProperty = SORT_TYPES[type];
+      const sortType = SORT_TYPES[type];
       const sorted = [...DUMMY_DATA].sort((a, b) =>
-        a[sortProperty] < b[sortProperty] ? -1 : 1
+        a[sortType] < b[sortType] ? -1 : 1
       );
-      setSortedList(sorted);
+      setSortedMovieList(sorted);
     };
     sortMovieList(sortValue);
-  }, [setSortedList, sortValue]);
+  }, [setSortedMovieList, sortValue]);
 
   return (
     <>
@@ -45,12 +46,12 @@ function NavSection() {
           <div>SORT BY</div>
           <div>
             <select
-              className="options"
+              className="sort-options"
               onChange={(e) => setSortValue(e.target.value)}
             >
-              <option value="title">Title</option>
-              <option value="genre">Genre </option>
-              <option value="year">Release Year</option>
+              <option value="title">TITLE</option>
+              <option value="genre">GENRE </option>
+              <option value="year">RELEASE YEAR</option>
             </select>
           </div>
         </div>

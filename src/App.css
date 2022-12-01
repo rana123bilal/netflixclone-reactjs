@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  
 }
 
 *{
@@ -37,4 +36,6 @@
     transform: rotate(360deg);
   }
 }
-
+.movie-list-container{
+  background-color: #232323;
+}

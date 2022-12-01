@@ -1,170 +1,143 @@
-import React, { useState, useContext } from "react";
+import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
-import DUMMY_DATA from "../data";
+import { DUMMY_DATA } from "../data";
+import { useContext } from "react";
 import DataContext from "../../context/data-context";
+import useForm from "../../hooks/useForm";
 
 export default function AddMovie() {
-  const { toggleMovieModal, setToggleMovieModal, setSortedList, sortedList } =
-    useContext(DataContext);
-  const [inputMovieData, setInputMovieData] = useState({
-    title: "",
-    releaseDate: "",
-    movieURL: "",
-    rating: "",
-    genre: "",
-    runtime: "",
-    overview: "",
-  });
+  const {
+    toggleMovieModal,
+    setToggleMovieModal,
+    setSortedMovieList,
+    sortedMovieList,
+  } = useContext(DataContext);
 
-  function titleHandler(event) {
-    setInputMovieData({ ...inputMovieData, title: event.target.value });
-  }
-  function URLHandler(event) {
-    setInputMovieData({ ...inputMovieData, movieURL: event.target.value });
-  }
-  function genreHandler(event) {
-    setInputMovieData({ ...inputMovieData, genre: event.target.value });
-  }
-  function releaseDateHandler(event) {
-    setInputMovieData({ ...inputMovieData, releaseDate: event.target.value });
-  }
-  function ratingHandler(event) {
-    setInputMovieData({ ...inputMovieData, rating: event.target.value });
-  }
-  function runtimeHandler(event) {
-    setInputMovieData({ ...inputMovieData, runtime: event.target.value });
-  }
-  function overviewHandler(event) {
-    setInputMovieData({ ...inputMovieData, overview: event.target.value });
-  }
+  const [formData, handleChangeInputs, handleSubmit] = useForm(addMovieHandler);
 
-  function addMovieHandler(event) {
-    event.preventDefault();
-    const { title, releaseDate, movieURL, rating, genre, runtime, overview } =
-      inputMovieData;
-    const year = releaseDate.split("-")[0];
-    const id = sortedList.length + 1;
-    const newMovie = {
+  function addMovieHandler() {
+    const {
       title,
-      year,
+      releaseDate: { value },
       movieURL,
       rating,
       genre,
       runtime,
       overview,
+    } = formData;
+    const year = value.split("-")[0];
+    const id = sortedMovieList.length + 1;
+    const newMovieDetails = {
+      title: title.value,
+      year,
+      movieURL: movieURL.value,
+      rating: rating.value,
+      genre: genre.value,
+      runtime: runtime.value,
+      overview: overview.value,
       id,
     };
-    setSortedList([...DUMMY_DATA, newMovie]);
-
-    setInputMovieData({
-      title: "",
-      releaseDate: "",
-      movieURL: "",
-      rating: "",
-      genre: "",
-      runtime: "",
-      overview: "",
-    });
+    setSortedMovieList([...DUMMY_DATA, newMovieDetails]);
   }
-
-  const handleClose = () => setToggleMovieModal(false);
-
   return (
     <div>
       <Modal
         open={toggleMovieModal}
-        onClose={handleClose}
+        onClose={() => setToggleMovieModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box>
           <div className="addMovieModal">
-            <h2>Add Movie</h2>
-            <form>
+            <div className="head">
+              <h2>ADD MOVIE</h2>
+              <CloseIcon
+                className="closeicon"
+                onClick={() => setToggleMovieModal(false)}
+              />
+            </div>
+            <form onSubmit={handleSubmit}>
               <div className="left">
                 <div className="form-title">
-                  <label>Title</label>
+                  <label>TITLE</label>
                   <input
                     type="text"
                     placeholder="Enter Title"
-                    onChange={titleHandler}
-                    value={inputMovieData.title}
+                    onChange={handleChangeInputs("title")}
+                    value={formData.title.value || ""}
                   />
                 </div>
                 <div className="URL">
-                  <label>Movie URL</label>
+                  <label>MOVIE URL</label>
                   <input
                     type="text"
                     placeholder="Enter URL"
-                    onChange={URLHandler}
-                    value={inputMovieData.movieURL}
+                    onChange={handleChangeInputs("movieURL")}
+                    value={formData.movieURL.value || ""}
                   />
                 </div>
-                <div>
-                  <label>Genre</label>
+                <div className="genre">
+                  <label>GENRE</label>
                   <select
                     className="options"
-                    onChange={genreHandler}
-                    value={inputMovieData.genre}
+                    onChange={handleChangeInputs("genre")}
+                    value={formData.genre.value || ""}
                   >
-                    <option>Select Genre</option>
-                    <option>Action</option>
-                    <option>Comedy</option>
-                    <option>Drama</option>
-                    <option>Horror</option>
+                    <option type="checkbox">SELECT GENRE</option>
+                    <option>ACTION</option>
+                    <option>COMEDY</option>
+                    <option>DRAMA</option>
+                    <option>HORROR</option>
                   </select>
                 </div>
               </div>
               <div className="right">
                 <div className="date">
-                  <label>Release Date</label>
+                  <label>RELEASE DATE</label>
                   <input
                     type="date"
                     placeholder="Enter Release Date"
-                    onChange={releaseDateHandler}
-                    value={inputMovieData.releaseDate}
+                    onChange={handleChangeInputs("releaseDate")}
+                    value={formData.releaseDate.value || ""}
                   />
                 </div>
                 <div className="ratings">
-                  <label>Ratings</label>
+                  <label>RATINGS</label>
                   <input
                     type="number"
                     placeholder="Enter Rating"
-                    onChange={ratingHandler}
-                    value={inputMovieData.rating}
+                    onChange={handleChangeInputs("rating")}
+                    value={formData.rating.value || ""}
                   />
                 </div>
-                <div>
-                  <label>Runtime</label>
+                <div className="runtime">
+                  <label>RUNTIME</label>
                   <input
                     type="text"
                     placeholder="Enter Minutes"
-                    onChange={runtimeHandler}
-                    value={inputMovieData.runtime}
+                    onChange={handleChangeInputs("runtime")}
+                    value={formData.runtime.value || ""}
                   />
                 </div>
               </div>
 
               <div className="text-area">
-                <label>Overview</label>
+                <label>OVERVIEW</label>
                 <textarea
                   type="textarea"
                   placeholder="Enter Description"
-                  onChange={overviewHandler}
-                  value={inputMovieData.overview}
+                  onChange={handleChangeInputs("overview")}
+                  value={formData.overview.value || ""}
                 />
               </div>
               <div className="buttons">
                 <button type="reset" className="reset">
                   RESET
                 </button>
-                <button
-                  type="submit"
-                  className="submit"
-                  onClick={addMovieHandler}
-                >
+                <button type="submit" className="submit">
                   SUBMIT
                 </button>
               </div>

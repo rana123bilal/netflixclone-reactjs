@@ -9,33 +9,31 @@ export default function DeleteMovie() {
   const {
     openDeleteMovieModal,
     setOpenDeleteMovieModal,
-    setSortedList,
+    setSortedMovieList,
     movieId,
-    sortedList,
+    sortedMovieList,
   } = useContext(DataContext);
-  const handleClose = () => setOpenDeleteMovieModal(false);
 
-  const deleteHandler = (id) => {
-    setSortedList(sortedList.filter((movie) => movie.id !== id));
-    handleClose();
+  const deleteMovieHandler = (id) => {
+    setSortedMovieList(sortedMovieList.filter((movie) => movie.id !== id));
+    setOpenDeleteMovieModal(false);
   };
 
   return (
     <div>
       <Modal
         open={openDeleteMovieModal}
-        onClose={handleClose}
+        onClose={() => setOpenDeleteMovieModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box>
           <div className="deleteMovieModal">
             <h2>Delete Movie</h2>
-            <p>Are you sure you want to delete this movie?</p>
+            <p>Are you sure you want to delete this movie?</p> 
             <button
               className="confirm-delete"
-              type="button"
-              onClick={() => deleteHandler(movieId)}
+              onClick={() => deleteMovieHandler(movieId)}
             >
               Confirm
             </button>
