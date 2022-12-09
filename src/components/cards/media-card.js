@@ -1,93 +1,72 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
 import Card from "@mui/material/Card";
 import "./media-card.css";
 import CardMedia from "@mui/material/CardMedia";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import PropTypes from "prop-types";
 import kebabMenu from "../../assets/images/kebebMenu.png";
+import { useContext } from "react";
 import DataContext from "../../context/data-context";
+import PropTypes from "prop-types";
 
 export default function MediaCard({ id, title, image, genre, year }) {
   const {
     setMovieIdForDeleteEdit,
-    openEditMovieModal,
-    openDeleteMovieModal,
     setOpenEditMovieModal,
     setOpenDeleteMovieModal,
+    setViewMovieDetails,
   } = useContext(DataContext);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    setAnchorEl(false);
-  }, [openEditMovieModal, openDeleteMovieModal]);
-
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  function editHandler() {
+  function editCardHandler() {
     setOpenEditMovieModal(true);
   }
-  function deleteHandler() {
+  function deleteCardHandler() {
     setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
-  function handleClose() {
-    setAnchorEl(null);
-  }
-  const handleMouseOver = () => {
-    setIsHovering(true);
+  const toggleCard = () => {
+    setViewMovieDetails(true);
+    setMovieIdForDeleteEdit(id);
   };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
+  const addDefaultSourceImage = (event) => {
+    event.target.src = "https://ranobehub.org/img/ranobe/posters/default.jpg";
   };
   return (
-    <div
-      onMouseOver={handleMouseOver}
-      onFocus={handleMouseOver}
-      onBlur={handleMouseOut}
-      onMouseOut={handleMouseOut}
-    >
-      <Card sx={{ maxWidth: 345 }}>
-        <CardMedia
-          component="img"
-          height="500"
-          width="345"
-          image={image}
-          alt="green iguana"
-        />
-        <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={() => handleClose()}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-        >
-          <MenuItem onClick={editHandler}>Edit</MenuItem>
-          <MenuItem onClick={deleteHandler}>Delete</MenuItem>
-        </Menu>
-        {isHovering && (
-          <div className="kebab-menu" onClick={handleClick}>
-            <img src={kebabMenu} alt="menu" />
+    <div className="card-media">
+      <Card
+        sx={{
+          maxWidth: 345,
+          boxShadow: "none",
+          borderRadius: "unset",
+          margin: "5px",
+        }}
+      >
+        <div className="card-image">
+          <CardMedia
+            sx={{ display: "inline-block" }}
+            component="img"
+            className="media-card"
+            height="500"
+            width="345"
+            image={image}
+            alt={title}
+            onClick={toggleCard}
+            onError={addDefaultSourceImage}
+          />
+          <div className="menu-dropdown">
+            <div className="kebab-menu">
+              <img src={kebabMenu} alt="menu" />
+            </div>
+            <div className="dropdown-menu">
+              <div className="dropdown-content">
+                <p onClick={deleteCardHandler}>Delete</p>
+                <p onClick={editCardHandler}>Edit</p>
+              </div>
+            </div>
           </div>
-        )}
+        </div>
         <div className="text">
           <div className="title">
             <h3>{title}</h3>
-            <p>{genre}</p>
+            <p>{genre.map((g) => g + ", ")}</p>
           </div>
           <div>
             <p className="year">{year}</p>
@@ -102,6 +81,6 @@ MediaCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   image: PropTypes.any,
-  genre: PropTypes.string,
-  year: PropTypes.number,
+  genre: PropTypes.array,
+  year: PropTypes.string,
 };

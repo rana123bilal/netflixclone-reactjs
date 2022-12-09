@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
+import React from "react";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
+import { useContext } from "react";
 import DataContext from "../../context/data-context";
 
 export default function EditMovie() {
   const { openEditMovieModal, setOpenEditMovieModal } = useContext(DataContext);
-  const handleClose = () => setOpenEditMovieModal(false);
-
   return (
     <div>
       <Modal
         open={openEditMovieModal}
-        onClose={handleClose}
+        onClose={() => setOpenEditMovieModal(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box>
           <div className="addMovieModal">
-            <h2>Edit Movie</h2>
+            <div className="head">
+              <h2>Edit Movie</h2>
+              <CloseIcon
+                className="closeicon"
+                onClick={() => setOpenEditMovieModal(false)}
+              />
+            </div>
             <form>
               <div className="left">
                 <div className="form-title">
@@ -29,7 +35,7 @@ export default function EditMovie() {
                   <label>Movie URL</label>
                   <input type="text" placeholder="Enter URL" />
                 </div>
-                <div>
+                <div className="genre">
                   <label>Genre</label>
                   <select className="options">
                     <option>Select Genre</option>
@@ -49,7 +55,7 @@ export default function EditMovie() {
                   <label>Ratings</label>
                   <input type="number" placeholder="Enter Rating" />
                 </div>
-                <div>
+                <div className="runtime">
                   <label>Runtime</label>
                   <input type="text" placeholder="Enter Minutes" />
                 </div>

@@ -1,15 +1,17 @@
-import React, { createContext, useState, useEffect, useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import { createContext, useState, useEffect } from "react";
 
 const DataContext = createContext({});
 
-export function DataProvider({ children }) {
+export const DataProvider = ({ children }) => {
   const [toggleMovieModal, setToggleMovieModal] = useState(false);
   const [openEditMovieModal, setOpenEditMovieModal] = useState(false);
   const [openDeleteMovieModal, setOpenDeleteMovieModal] = useState(false);
-  const [searchedTerm, setSearchedTerm] = useState("");
-  const [sortedList, setSortedList] = useState([]);
+  const [inputSearchTerm, setInputSearchTerm] = useState("");
+  const [sortedMovieList, setSortedMovieList] = useState([]);
   const [movieId, setMovieId] = useState(null);
+  const [viewMovieDetails, setViewMovieDetails] = useState(false);
 
   const setMovieIdForDeleteEdit = (id) => {
     setMovieId(id);
@@ -19,34 +21,30 @@ export function DataProvider({ children }) {
     document.title = "Netflix Clone";
   }, []);
 
-  const values = useMemo(
-    () => ({
-      setSortedList,
-      sortedList,
-      setToggleMovieModal,
-      toggleMovieModal,
-      setOpenEditMovieModal,
-      openEditMovieModal,
-      openDeleteMovieModal,
-      setOpenDeleteMovieModal,
-      searchedTerm,
-      setSearchedTerm,
-      movieId,
-      setMovieId,
-      setMovieIdForDeleteEdit,
-    }),
-    [
-      movieId,
-      openDeleteMovieModal,
-      openEditMovieModal,
-      searchedTerm,
-      sortedList,
-      toggleMovieModal,
-    ]
+  return (
+    <DataContext.Provider
+      value={{
+        setSortedMovieList,
+        sortedMovieList,
+        setToggleMovieModal,
+        toggleMovieModal,
+        setOpenEditMovieModal,
+        openEditMovieModal,
+        openDeleteMovieModal,
+        setOpenDeleteMovieModal,
+        inputSearchTerm,
+        setInputSearchTerm,
+        movieId,
+        setMovieId,
+        viewMovieDetails,
+        setViewMovieDetails,
+        setMovieIdForDeleteEdit,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
   );
-
-  return <DataContext.Provider value={values}>{children}</DataContext.Provider>;
-}
+};
 DataProvider.propTypes = {
   children: PropTypes.any,
 };

@@ -1,7 +1,18 @@
-.wrapper{
+.card-wrapper{
     display: inline-flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-left: 20px;
     margin: 30px;
+    background-color: #232323;
+}
+
+.found-movies{
+    display: flex;
+    margin-left: 164px;
+    margin-top: 18px;
+}
+
+.loading{
+    color: white;
 }

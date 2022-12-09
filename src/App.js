@@ -1,5 +1,8 @@
 import React from "react";
 import "./App.css";
+import { useDispatch } from "react-redux";
+import { useContext, useEffect } from "react";
+import DataContext from "./context/data-context";
 import Header from "./components/header/Header";
 import Search from "./components/search/Search";
 import NavSection from "./components/nav-component/nav-section";
@@ -9,22 +12,31 @@ import ErrorBoundry from "./components/error-boundries/error-boundry";
 import AddMovie from "./components/movie/add-movie";
 import EditMovie from "./components/movie/edit-movie";
 import DeleteMovie from "./components/movie/delete-movie";
-import { DataProvider } from "./context/data-context";
+import ViewMovie from "./components/movie/view-movie-details";
+import { fetchMovieList } from "./redux/actions/movie-actions";
 
 function App() {
+  const { viewMovieDetails } = useContext(DataContext);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMovieList());
+  }, []);
+
   return (
     <div className="App">
       <ErrorBoundry>
-        <DataProvider>
-          <Header />
-          <AddMovie />
-          <Search />
+        <div className="header">{!viewMovieDetails && <Header />}</div>
+        <AddMovie />
+        {!viewMovieDetails && <Search />}
+        {viewMovieDetails && <ViewMovie />}
+        <div className="movie-list-container">
           <NavSection />
           <CardList />
           <EditMovie />
           <DeleteMovie />
-          <Footer />
-        </DataProvider>
+        </div>
+        <Footer />
       </ErrorBoundry>
     </div>
   );

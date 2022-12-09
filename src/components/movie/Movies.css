@@ -9,7 +9,22 @@
     overflow: auto;
     margin-top: 5px;
     float: right;
-    width:800px;
+    width: 976px;
+    height: 717px;
+    padding: 16px;
+    overflow: hidden;
+}
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.closeicon{
+    color: white;
+    margin-right: 51px;
+    margin-top: 42px;
+    cursor: pointer;
 }
 @media screen and (max-width: 500px) {
     .addMovieModal {
@@ -36,24 +51,18 @@ h2{
     flex-direction: row;
     flex-wrap: wrap;
     width:100%;
-    height:100%;
-    padding-top:30px;
-    padding-bottom:30px;
-    margin-left: 40px;
+    margin-left: 43px;
 }
 .addMovieModal form label{
-    width: 50px;
+    width: 120px;
     height: 20px;
     opacity: 80px;
-    color: #F65261;
-    
+    color: #F65261;     
+    font-size: 15px;
+    margin-bottom: 6px;
 }
 .addMovieModal form input{
-    margin: 10px;
-    margin-left: 10px;
-    width: 200px;
-    height: 35px;
-    top: 183px;
+    height: 57px; 
     border-radius: 4px;
     opacity: 80%;
     background: #323232;
@@ -62,11 +71,64 @@ h2{
     color: #FFFFFF;
     font-weight: 400;
     font-style: normal;
+    padding-left: 17px;
 }
-.options{
+/* 
+.addMovieModal form textarea{
+    color: #FFFFFF;
+    font-weight: 400;
+    font-style: normal;
+    padding: 17px;
+    font-size: 15px;
+    opacity: 80%;
+    width: 820px;
+    background: #323232;
+} */
+
+.form-title{
+    display: flex;
+    flex-direction: column;
+    width: 525px;
+}
+.URL{
+    display: flex;
+    flex-direction: column;
+    width: 525px;
+    margin-top: 20px;
+}
+.genre{
+    display: flex;
+    flex-direction: column;
+    width: 525px;
+    margin-top: 20px;
+}
+.date{
+    display: flex;
+    flex-direction: column;
+    width: 301px;
+}
+.ratings{
+    display: flex;
+    flex-direction: column;
+    width: 301px;
+    margin-top: 20px;
+}
+.runtime{
+    display: flex;
+    flex-direction: column;
+    width: 301px;
+    margin-top: 20px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #FFFFFF;
+    color-scheme: dark;
     margin: 10px;
-    width: 200px;
-    height: 35px;
+}
+
+
+.options{
+    width: 525px;
+    height: 57px;
     top: 183px;
     border-radius: 4px;
     opacity: 80%;
@@ -76,32 +138,36 @@ h2{
     color: #FFFFFF;
     font-weight: 400;
     font-style: normal;
+    padding: 10px;
 }
 
 
 .text-area{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 textarea {
-    margin-top: 10px;
-    width: 716px;
     height: 100px;
-    background-color: #232323;
+    background-color: #323232;
     color: #FFFFFF;
-    font-family: Montserrat;
+    border: none;
+    border-radius: 5px;
+    font-weight: 400;
+    font-style: normal;
+    padding: 17px;
+    font-size: 15px;
+    opacity: 80%;
+    width: 820px;
   }
 
   .left{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
   }
   .right{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-left: 96px;
+    margin-left: 30px;
   }
 
 .reset{
@@ -116,7 +182,8 @@ textarea {
    font-family: Montserrat;
 }
 .buttons{
-    margin-left: 452px;
+    margin-left: 585px;
+    margin-top: 34px;
 }
 
 .text-area label{
@@ -139,12 +206,18 @@ textarea {
 
 .deleteMovieModal p{
     color: #FFFFFF;
-    margin-left: 45px;
-    margin-top: -28px;
+    margin-left: 31px;
+    margin-top: 1px;
+}
+
+.close-icon-in-delete{
+    margin-left: 571px;
+    margin-top: 0px;
 }
 
 .confirm-delete{
-    margin-left: 586px;
+    margin-left: 451px;
+    margin-top: 58px;
     width: 130px; 
     height: 40px;
     border-radius: 3px;
@@ -166,5 +239,115 @@ textarea {
     overflow: auto;
     margin-top: 5px;
     float: right;
-    width:800px;
+    width: 686px;
+    height: 352px;
+}
+
+/* view movie css */
+.movie-container{
+    display: flex;
+    flex-direction: row;
+    background-color: #232323;
+    width: 100%;
+}
+.logo2{
+    display: flex;
+    padding: 39px;
+    width: 147px;
+    margin-right: 760px;
+    padding-left: 0px;
+
+}
+
+.data-container{
+    flex: 2;
+    text-align: left;
+    margin-left: 25px;
+}
+.image-container{
+   flex: 1 1 3%;
+   margin-left: 94px; 
+}
+
+.image-container img{
+    width: 323.41px;
+    height: 486px;
+}
+.data-container h2{
+    margin-left: 0px;
+}
+.data-container h3{
+    justify-content: flex-start;
+}
+
+.data-container p{
+    color: white;
+    width: 698px;
+    opacity: 0.5;
+    font-weight: lighter;
+    
+}
+.year-time{
+    display: flex;
+}
+
+.data-container h3{
+    color: #F65261;
+}
+.top-header{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #232323;
+    width: 100%; 
+}
+.release-year{
+    font-weight: lighter;
+    font-size: 24px;
+}
+.duration{
+    font-weight: lighter;
+    font-size: 24px;
+}
+.genre-view{
+    margin-top: 0px;
+}
+
+.searchIcon{
+    color: #F65261;
+    margin-top: 42px;
+} 
+
+.h2-heading{
+    display: flex;
+}
+
+.duration{
+    margin-left: 50px;
+}
+
+.viewMovie-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: initial;
+}
+
+.viewMovie-title p{
+    margin: 0px;
+}
+
+
+.viewMovie-title img{
+    margin-left: 71px;
+}
+
+.viewMovie-title h4{  
+    margin-left: -40px;
+    font-size: 17px;
+    color: white;
+} 
+
+hr{
+    background-color:#323232;
+    color: #323232;
 }
