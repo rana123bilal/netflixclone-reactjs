@@ -8,6 +8,22 @@
     background-image: url('../../assets/images/header.png');
 }
 
+@media screen and (min-width: 390px) {
+    .search-container{
+        display: flex;
+        width: 100%;
+    }
+    .search-input{
+        justify-content: center;
+        align-items: center;
+        width: 340px;
+        height: 45px;
+    }
+    .main-title{
+        text-align: center;
+    }
+}
+
 .search-input{
     width: 713px;
     height: 57px;
@@ -35,7 +51,6 @@ font-style: normal;;
 font-weight: 300;
 font-size: 40px;
 line-height: 49px;
-text-align: left;
 letter-spacing: 1px;
 text-transform: uppercase;
 color: #FFFFFF;

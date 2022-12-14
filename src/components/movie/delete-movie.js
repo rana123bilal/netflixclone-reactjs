@@ -30,7 +30,7 @@ export default function DeleteMovie() {
         <Box>
           <div className="deleteMovieModal">
             <h2>Delete Movie</h2>
-            <p>Are you sure you want to delete this movie?</p>
+            <p>Are you sure you want to delete this movie?</p> 
             <button
               className="confirm-delete"
               onClick={() => deleteMovieHandler(movieId)}
