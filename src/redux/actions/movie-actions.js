@@ -29,8 +29,8 @@ export const fetchMovieList = () => async (dispatch) => {
     dispatch({
       type: MOVIE_LIST_FAIL,
       payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -45,8 +45,8 @@ export const sortMovieList = (query) => async (dispatch) => {
     dispatch({
       type: SORT_LIST_FAIL,
       payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -64,8 +64,8 @@ export const searchMoviesByTitle = (search) => async (dispatch) => {
     dispatch({
       type: SEARCH_LIST_BY_TITLE_FAIL,
       payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -86,8 +86,8 @@ export const searchMoviesByGenres = (search) => async (dispatch) => {
     dispatch({
       type: SEARCH_LIST_BY_GENRES_FAIL,
       payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -105,8 +105,8 @@ export const listMovieDetails = (id) => async (dispatch) => {
     dispatch({
       type: MOVIE_DETAILS_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -121,8 +121,8 @@ export const filterMoviesByGenres = (query) => async (dispatch) => {
     dispatch({
       type: FILTER_LIST_FAIL,
       payload:
-        error.message && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }

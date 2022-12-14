@@ -27,7 +27,7 @@ function Search() {
     "crime",
   ];
 
-  const searchButtonHandler = (event) => {
+  const searchMovies = (event) => {
     event.preventDefault();
     if (search !== "") {
       if (genres.includes(search)) {
@@ -51,7 +51,7 @@ function Search() {
             value={search}
             className="search-input"
           />
-          <button onClick={searchButtonHandler} className="search-button">
+          <button onClick={searchMovies} className="search-button">
             SEARCH
           </button>
         </div>

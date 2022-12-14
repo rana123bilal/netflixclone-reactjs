@@ -9,7 +9,7 @@ import DataContext from "../../context/data-context";
 function CardList() {
   const { inputSearchTerm } = useContext(DataContext);
 
-  const { loading, movies } = useSelector((state) => state.movieList);
+  const { loading, movies, error } = useSelector((state) => state.movieList);
   const filteredMovieList = movies?.filter((value) => {
     if (inputSearchTerm !== "") {
       return value.title
@@ -39,6 +39,7 @@ function CardList() {
             </Grid>
           );
         })}
+        {error && <h2>Opps...we hit a snag</h2>}
       </Grid>
     </>
   );

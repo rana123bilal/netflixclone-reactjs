@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchMovieList());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="App">

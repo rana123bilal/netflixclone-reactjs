@@ -27,8 +27,8 @@ const intialMovieDetailState = {
   movie: {},
 };
 
-export function movieListReducer(state = initialState, action) {
-  switch (action.type) {
+export function movieListReducer(state = initialState, { type, payload }) {
+  switch (type) {
     case MOVIE_LIST_REQUEST:
       return {
         loading: true,
@@ -37,7 +37,7 @@ export function movieListReducer(state = initialState, action) {
     case MOVIE_LIST_SUCCESS:
       return {
         loading: false,
-        movies: action.payload,
+        movies: payload,
       };
     case MOVIE_LIST_FAIL:
       return {
@@ -53,7 +53,7 @@ export function movieListReducer(state = initialState, action) {
     case SORT_LIST_SUCCESS:
       return {
         loading: false,
-        movies: action.payload,
+        movies: payload,
       };
     case SORT_LIST_FAIL:
       return {
@@ -68,7 +68,7 @@ export function movieListReducer(state = initialState, action) {
     case SEARCH_LIST_BY_TITLE_SUCCESS:
       return {
         loading: false,
-        movies: action.payload,
+        movies: payload,
       };
     case SEARCH_LIST_BY_TITLE_FAIL:
       return {
@@ -83,7 +83,7 @@ export function movieListReducer(state = initialState, action) {
     case SEARCH_LIST_BY_GENRES_SUCCESS:
       return {
         loading: false,
-        movies: action.payload,
+        movies: payload,
       };
     case SEARCH_LIST_BY_GENRES_FAIL:
       return {
@@ -98,7 +98,7 @@ export function movieListReducer(state = initialState, action) {
     case FILTER_LIST_SUCCESS:
       return {
         loading: false,
-        movies: action.payload,
+        movies: payload,
       };
     case FILTER_LIST_FAIL:
       return {
@@ -110,14 +110,17 @@ export function movieListReducer(state = initialState, action) {
   }
 }
 
-export const movieDetailReducer = (state = intialMovieDetailState, action) => {
-  switch (action.type) {
+export const movieDetailReducer = (
+  state = intialMovieDetailState,
+  { type, payload }
+) => {
+  switch (type) {
     case MOVIE_DETAILS_REQUEST:
       return { ...state, loading: true };
     case MOVIE_DETAILS_SUCCESS:
-      return { loading: false, movie: action.payload };
+      return { loading: false, movie: payload };
     case MOVIE_DETAILS_FAIL:
-      return { loading: false, error: action.payload };
+      return { loading: false, error: payload };
     default:
       return state;
   }
