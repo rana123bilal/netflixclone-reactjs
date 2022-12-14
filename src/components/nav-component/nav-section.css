@@ -2,15 +2,17 @@
     color: white;
     display: flex;
     justify-content: space-around;
-    gap: 10rem;
+    gap: 18rem;
     background-color: #232323;
 }
-
 
 .left-links-container a{
     display: flex;
     color: inherit;
     text-decoration: none;
+}
+.genre-list{
+    cursor: pointer;
 }
 
 .left-links-container li.active{

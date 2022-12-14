@@ -26,6 +26,9 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);
   };
+  const addDefaultSourceImage = (event) => {
+    event.target.src = "https://ranobehub.org/img/ranobe/posters/default.jpg";
+  };
   return (
     <div className="card-media">
       <Card
@@ -38,20 +41,21 @@ export default function MediaCard({ id, title, image, genre, year }) {
       >
         <div className="card-image">
           <CardMedia
-           sx={{display:"inline-block"}}
+            sx={{ display: "inline-block" }}
             component="img"
             className="media-card"
             height="500"
             width="345"
             image={image}
-            alt="green iguana"
+            alt={title}
             onClick={toggleCard}
+            onError={addDefaultSourceImage}
           />
           <div className="menu-dropdown">
             <div className="kebab-menu">
-              <img src={kebabMenu} alt="menu"/>
+              <img src={kebabMenu} alt="menu" />
             </div>
-           <div className="dropdown-menu">
+            <div className="dropdown-menu">
               <div className="dropdown-content">
                 <p onClick={deleteCardHandler}>Delete</p>
                 <p onClick={editCardHandler}>Edit</p>
@@ -62,7 +66,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
         <div className="text">
           <div className="title">
             <h3>{title}</h3>
-            <p>{genre}</p>
+            <p>{genre.map((g) => g + ", ")}</p>
           </div>
           <div>
             <p className="year">{year}</p>
@@ -77,6 +81,6 @@ MediaCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
   image: PropTypes.any,
-  genre: PropTypes.string,
+  genre: PropTypes.array,
   year: PropTypes.string,
 };

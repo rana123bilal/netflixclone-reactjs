@@ -3,11 +3,14 @@ import MediaCard from "./media-card";
 import "./card-list.css";
 import { Grid } from "@mui/material";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import DataContext from "../../context/data-context";
 
 function CardList() {
-  const { inputSearchTerm, sortedMovieList } = useContext(DataContext);
-  const filteredMovieList = sortedMovieList.filter((value) => {
+  const { inputSearchTerm } = useContext(DataContext);
+
+  const { loading, movies, error } = useSelector((state) => state.movieList);
+  const filteredMovieList = movies?.filter((value) => {
     if (inputSearchTerm !== "") {
       return value.title
         .toLocaleLowerCase()
@@ -18,21 +21,25 @@ function CardList() {
 
   return (
     <>
-      <div className="found-movies">{filteredMovieList.length} movies found</div>
+      <div className="found-movies">
+        {filteredMovieList?.length} movies found
+      </div>
       <Grid>
-        {filteredMovieList.map((movie, i) => {
+        {loading && <h1 className="loading">Loading...</h1>}
+        {movies?.map((movie, i) => {
           return (
             <Grid className="card-wrapper" key={i}>
               <MediaCard
                 id={movie.id}
                 title={movie.title}
-                image={movie.movieURL}
-                genre={movie.genre}
-                year={movie.year.toString()}
+                image={movie.poster_path}
+                genre={movie.genres}
+                year={movie.release_date.toString().split("-")[0]}
               />
             </Grid>
           );
         })}
+        {error && <h2>Opps...we hit a snag</h2>}
       </Grid>
     </>
   );

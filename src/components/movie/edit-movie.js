@@ -1,5 +1,5 @@
 import React from "react";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./Movies.css";
@@ -18,9 +18,12 @@ export default function EditMovie() {
       >
         <Box>
           <div className="addMovieModal">
-          <div className="head">
-            <h2>Edit Movie</h2>
-            <CloseIcon className="closeicon" onClick={() => setOpenEditMovieModal(false)}/>
+            <div className="head">
+              <h2>Edit Movie</h2>
+              <CloseIcon
+                className="closeicon"
+                onClick={() => setOpenEditMovieModal(false)}
+              />
             </div>
             <form>
               <div className="left">

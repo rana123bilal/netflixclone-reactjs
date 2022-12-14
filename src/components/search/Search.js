@@ -1,19 +1,41 @@
 import React, { useState } from "react";
 import "./Search.css";
-import { useContext } from "react";
-import DataContext from "../../context/data-context";
+import { useDispatch } from "react-redux";
+import {
+  searchMoviesByTitle,
+  searchMoviesByGenres,
+} from "../../redux/actions/movie-actions";
 
 function Search() {
-  const { setInputSearchTerm } = useContext(DataContext);
   const [search, setSearch] = useState("");
+
+  const dispatch = useDispatch();
 
   const onSearchChange = (event) => {
     setSearch(event.target.value);
   };
+  const genres = [
+    "drama",
+    "fantasy",
+    "romance",
+    "family",
+    "mystery",
+    "science fiction",
+    "thriller",
+    "action",
+    "comedy",
+    "crime",
+  ];
 
-  const searchButtonHandler = (event) => {
+  const searchMovies = (event) => {
     event.preventDefault();
-    setInputSearchTerm(search);
+    if (search !== "") {
+      if (genres.includes(search)) {
+        dispatch(searchMoviesByGenres(search));
+        return;
+      }
+      dispatch(searchMoviesByTitle(search));
+    }
     setSearch("");
   };
 
@@ -29,7 +51,7 @@ function Search() {
             value={search}
             className="search-input"
           />
-          <button onClick={searchButtonHandler} className="search-button">
+          <button onClick={searchMovies} className="search-button">
             SEARCH
           </button>
         </div>

@@ -13,7 +13,7 @@ function Header() {
   return (
     <div className="header-container">
       <div className="logo">
-        <img src={logo} alt="netflix-roulette"/>
+        <img src={logo} alt="netflix-roulette" />
       </div>
       <div>
         <button
