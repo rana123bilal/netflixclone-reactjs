@@ -16,7 +16,7 @@ import ViewMovie from "./components/movie/view-movie-details";
 import { fetchMovieList } from "./redux/actions/movie-actions";
 
 function App() {
-  const { viewMovieDetails } = useContext(DataContext);
+  const { viewMovieDetails, openEditMovieModal } = useContext(DataContext);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function App() {
         <div className="movie-list-container">
           <NavSection />
           <CardList />
-          <EditMovie />
+          {openEditMovieModal && <EditMovie />}
           <DeleteMovie />
         </div>
         <Footer />

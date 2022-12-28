@@ -2,46 +2,76 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useRef } from "react";
 import "./Movies.css";
-import { DUMMY_DATA } from "../data";
+import { useFormik } from "formik";
 import { useContext } from "react";
+import { createMovie } from "../../redux/actions/movie-actions";
 import DataContext from "../../context/data-context";
-import useForm from "../../hooks/useForm";
+import { useDispatch } from "react-redux";
+import MultipleSelect from "./multipleSelect";
+import { options } from "../../Constants";
 
 export default function AddMovie() {
-  const {
-    toggleMovieModal,
-    setToggleMovieModal,
-    setSortedMovieList,
-    sortedMovieList,
-  } = useContext(DataContext);
+  const { toggleMovieModal, setToggleMovieModal } = useContext(DataContext);
 
-  const [formData, handleChangeInputs, handleSubmit] = useForm(addMovieHandler);
+  const onValueChange = (value) => {
+    return formik.setFieldValue("genres", value);
+  };
+  const MultipleSelectRef = useRef(null);
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      release_date: "",
+      poster_path: "",
+      rating: "",
+      genres: "",
+      runtime: 0,
+      overview: "",
+    },
+    onSubmit: (values, { resetForm }) => {
+      const movieData = {
+        title: values.title,
+        poster_path: values.poster_path,
+        runtime: Number(values.runtime),
+        release_date: values.release_date,
+        vote_average: values.rating,
+        genres: values.genres,
+        overview: values.overview,
+      };
+      dispatch(createMovie(movieData));
+      resetForm();
+      MultipleSelectRef.current.reset();
+    },
+    validate: (values) => {
+      const errors = {};
 
-  function addMovieHandler() {
-    const {
-      title,
-      releaseDate: { value },
-      movieURL,
-      rating,
-      genre,
-      runtime,
-      overview,
-    } = formData;
-    const year = value.split("-")[0];
-    const id = sortedMovieList.length + 1;
-    const newMovieDetails = {
-      title: title.value,
-      year,
-      movieURL: movieURL.value,
-      rating: rating.value,
-      genre: genre.value,
-      runtime: runtime.value,
-      overview: overview.value,
-      id,
-    };
-    setSortedMovieList([...DUMMY_DATA, newMovieDetails]);
-  }
+      if (!values.title) {
+        errors.title = "Required";
+      }
+      if (!values.release_date) {
+        errors.release_date = "Required";
+      }
+      if (!values.poster_path) {
+        errors.poster_path = "Required";
+      }
+      if (!values.rating) {
+        errors.rating = "Required";
+      }
+      if (!values.genres) {
+        errors.genres = "Required";
+      }
+      if (!values.runtime) {
+        errors.runtime = "Required";
+      }
+      if (!values.overview) {
+        errors.overview = "Required";
+      }
+      return errors;
+    },
+  });
+
   return (
     <div>
       <Modal
@@ -59,78 +89,100 @@ export default function AddMovie() {
                 onClick={() => setToggleMovieModal(false)}
               />
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit} ref={MultipleSelectRef}>
               <div className="left">
                 <div className="form-title">
                   <label>TITLE</label>
                   <input
+                    name="title"
                     type="text"
                     placeholder="Enter Title"
-                    onChange={handleChangeInputs("title")}
-                    value={formData.title.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.title}
                   />
+                  {formik.errors.title && (
+                    <div className="left-error">{formik.errors.title}</div>
+                  )}
                 </div>
                 <div className="URL">
                   <label>MOVIE URL</label>
                   <input
+                    name="poster_path"
                     type="text"
                     placeholder="Enter URL"
-                    onChange={handleChangeInputs("movieURL")}
-                    value={formData.movieURL.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.poster_path}
                   />
+                  {formik.errors.poster_path && (
+                    <div className="left-error">
+                      {formik.errors.poster_path}
+                    </div>
+                  )}
                 </div>
                 <div className="genre">
                   <label>GENRE</label>
-                  <select
+                  <MultipleSelect
+                    name="genres"
+                    options={options}
                     className="options"
-                    onChange={handleChangeInputs("genre")}
-                    value={formData.genre.value || ""}
-                  >
-                    <option type="checkbox">SELECT GENRE</option>
-                    <option>ACTION</option>
-                    <option>COMEDY</option>
-                    <option>DRAMA</option>
-                    <option>HORROR</option>
-                  </select>
+                    onChange={onValueChange}
+                    value={formik.values.genres}
+                  />
+                  {formik.errors.genres && (
+                    <div className="left-error">{formik.errors.genres}</div>
+                  )}
                 </div>
               </div>
               <div className="right">
                 <div className="date">
                   <label>RELEASE DATE</label>
                   <input
+                    name="release_date"
                     type="date"
                     placeholder="Enter Release Date"
-                    onChange={handleChangeInputs("releaseDate")}
-                    value={formData.releaseDate.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.release_date}
                   />
+                  {formik.errors.release_date && (
+                    <div className="error">{formik.errors.release_date}</div>
+                  )}
                 </div>
                 <div className="ratings">
                   <label>RATINGS</label>
                   <input
+                    name="rating"
                     type="number"
                     placeholder="Enter Rating"
-                    onChange={handleChangeInputs("rating")}
-                    value={formData.rating.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.rating}
                   />
+                  {formik.errors.rating && (
+                    <div className="error">{formik.errors.rating}</div>
+                  )}
                 </div>
                 <div className="runtime">
                   <label>RUNTIME</label>
                   <input
+                    name="runtime"
                     type="text"
                     placeholder="Enter Minutes"
-                    onChange={handleChangeInputs("runtime")}
-                    value={formData.runtime.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.runtime}
                   />
+                  {formik.errors.runtime && (
+                    <div className="error">{formik.errors.runtime}</div>
+                  )}
                 </div>
               </div>
 
               <div className="text-area">
                 <label>OVERVIEW</label>
                 <textarea
+                  name="overview"
                   type="textarea"
                   placeholder="Enter Description"
-                  onChange={handleChangeInputs("overview")}
-                  value={formData.overview.value || ""}
+                  onChange={formik.handleChange}
+                  value={formik.values.overview}
                 />
               </div>
               <div className="buttons">

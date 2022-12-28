@@ -34,7 +34,7 @@ function CardList() {
                 title={movie.title}
                 image={movie.poster_path}
                 genre={movie.genres}
-                year={movie.release_date.toString().split("-")[0]}
+                year={movie?.release_date?.toString().split("-")[0]}
               />
             </Grid>
           );
