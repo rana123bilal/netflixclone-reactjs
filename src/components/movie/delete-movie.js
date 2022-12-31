@@ -15,8 +15,8 @@ export default function DeleteMovie() {
 
   const deleteMovieHandler = (id) => {
     dispatch(deleteMovie(id));
-    dispatch(fetchMovieList());
     setOpenDeleteMovieModal(false);
+    dispatch(fetchMovieList());
   };
 
   return (

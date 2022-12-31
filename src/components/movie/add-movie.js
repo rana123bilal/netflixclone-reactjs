@@ -30,6 +30,8 @@ export default function AddMovie() {
       runtime: 0,
       overview: "",
     },
+    validateOnBlur: true,
+    validateOnChange: false,
     onSubmit: (values, { resetForm }) => {
       const movieData = {
         title: values.title,
@@ -46,7 +48,6 @@ export default function AddMovie() {
     },
     validate: (values) => {
       const errors = {};
-
       if (!values.title) {
         errors.title = "Required";
       }
