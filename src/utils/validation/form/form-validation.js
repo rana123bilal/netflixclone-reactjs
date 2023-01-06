@@ -43,6 +43,12 @@ export const formValidation = (values) => {
   if (!validateURL(values.poster_path)) {
     errors.poster_path = "Please enter a valid URL";
   }
+  if (values.rating < 0) {
+    errors.rating = "Ratings Must be Larger then 0";
+  }
+  if (values.runtime < 0) {
+    errors.runtime = "Runtime Must be Larger then 0";
+  }
   return errors;
 };
 

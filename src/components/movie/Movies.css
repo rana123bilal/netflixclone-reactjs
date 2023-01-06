@@ -128,7 +128,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .error{
     color: white;
-    margin-left: 220px;
 }
 .left-error{
     color: white;
