@@ -67,7 +67,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
         <div className="text">
           <div className="title">
             <h3>{title}</h3>
-            <p>{genre?.map((g) => g + ", ")}</p>
+            <p>{genre?.join(", ")}</p>
           </div>
           <div>
             <p className="year">{year}</p>

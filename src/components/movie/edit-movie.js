@@ -14,6 +14,7 @@ import { editMovie } from "../../redux/actions/movie-actions";
 import MultipleSelect from "./multipleSelect";
 import DataContext from "../../context/data-context";
 import { useDispatch, useSelector } from "react-redux";
+import { formValidation } from "../../utils/validation/form/form-validation";
 
 export default function EditMovie() {
   const { openEditMovieModal, setOpenEditMovieModal, movieId } =
@@ -39,10 +40,12 @@ export default function EditMovie() {
       release_date: movie.release_date,
       poster_path: movie.poster_path,
       rating: movie.vote_average,
-      genres: movie.genres?.join(" "),
+      genres: movie.genres,
       runtime: movie.runtime,
       overview: movie.overview,
     },
+    validateOnBlur: true,
+    validateOnChange: false,
     onSubmit: (values) => {
       const movieData = {
         id: movieId,
@@ -59,30 +62,7 @@ export default function EditMovie() {
       setOpenEditMovieModal(false);
     },
     validate: (values) => {
-      const errors = {};
-
-      if (!values.title) {
-        errors.title = "Required";
-      }
-      if (!values.release_date) {
-        errors.release_date = "Required";
-      }
-      if (!values.poster_path) {
-        errors.poster_path = "Required";
-      }
-      if (!values.rating) {
-        errors.rating = "Required";
-      }
-      if (!values.genres) {
-        errors.genres = "Required";
-      }
-      if (!values.runtime) {
-        errors.runtime = "Required";
-      }
-      if (!values.overview) {
-        errors.overview = "Required";
-      }
-      return errors;
+      return formValidation(values);
     },
   });
 
@@ -114,6 +94,9 @@ export default function EditMovie() {
                     value={formik.values.title}
                     onChange={formik.handleChange}
                   />
+                  {formik.errors.title && (
+                    <div className="left-error">{formik.errors.title}</div>
+                  )}
                 </div>
                 <div className="URL">
                   <label>Movie URL</label>
@@ -124,6 +107,11 @@ export default function EditMovie() {
                     onChange={formik.handleChange}
                     value={formik.values.poster_path}
                   />
+                  {formik.errors.poster_path && (
+                    <div className="left-error">
+                      {formik.errors.poster_path}
+                    </div>
+                  )}
                 </div>
                 <div className="genre">
                   <label>Genre</label>
@@ -132,8 +120,11 @@ export default function EditMovie() {
                     options={options}
                     className="options"
                     onChange={onValueChange}
-                    value={formik.values.genres}
+                    value={formik.values.genres?.toString()}
                   />
+                  {formik.errors.genres && (
+                    <div className="left-error">{formik.errors.genres}</div>
+                  )}
                 </div>
               </div>
               <div className="right">
@@ -146,6 +137,9 @@ export default function EditMovie() {
                     value={formik.values.release_date}
                     onChange={formik.handleChange}
                   />
+                  {formik.errors.release_date && (
+                    <div className="error">{formik.errors.release_date}</div>
+                  )}
                 </div>
                 <div className="ratings">
                   <label>Ratings</label>
@@ -156,6 +150,9 @@ export default function EditMovie() {
                     value={formik.values.rating}
                     onChange={formik.handleChange}
                   />
+                  {formik.errors.rating && (
+                    <div className="error">{formik.errors.rating}</div>
+                  )}
                 </div>
                 <div className="runtime">
                   <label>Runtime</label>
@@ -166,6 +163,9 @@ export default function EditMovie() {
                     value={formik.values.runtime}
                     onChange={formik.handleChange}
                   />
+                  {formik.errors.runtime && (
+                    <div className="error">{formik.errors.runtime}</div>
+                  )}
                 </div>
               </div>
 
@@ -180,7 +180,11 @@ export default function EditMovie() {
                 />
               </div>
               <div className="buttons">
-                <button type="reset" className="reset">
+                <button
+                  type="reset"
+                  className="reset"
+                  onClick={formik.resetForm}
+                >
                   RESET
                 </button>
                 <button type="submit" className="submit">

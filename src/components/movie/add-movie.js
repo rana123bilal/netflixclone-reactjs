@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -6,19 +6,26 @@ import { useRef } from "react";
 import "./Movies.css";
 import { useFormik } from "formik";
 import { useContext } from "react";
-import { createMovie } from "../../redux/actions/movie-actions";
+import {
+  createMovie,
+  resetCreateMovieState,
+} from "../../redux/actions/movie-actions";
 import DataContext from "../../context/data-context";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MultipleSelect from "./multipleSelect";
 import { options } from "../../Constants";
+import { formValidation } from "../../utils/validation/form/form-validation";
 
 export default function AddMovie() {
   const { toggleMovieModal, setToggleMovieModal } = useContext(DataContext);
-
-  const onValueChange = (value) => {
+  const { success } = useSelector((state) => {
+    return state.movieCreateDetail;
+  });
+  const onValueChange = useCallback((value) => {
     return formik.setFieldValue("genres", value);
-  };
-  const MultipleSelectRef = useRef(null);
+  }, []);
+
+  const multipleSelectRef = useRef(null);
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -32,7 +39,7 @@ export default function AddMovie() {
     },
     validateOnBlur: true,
     validateOnChange: false,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       const movieData = {
         title: values.title,
         poster_path: values.poster_path,
@@ -43,35 +50,17 @@ export default function AddMovie() {
         overview: values.overview,
       };
       dispatch(createMovie(movieData));
-      resetForm();
-      MultipleSelectRef.current.reset();
     },
     validate: (values) => {
-      const errors = {};
-      if (!values.title) {
-        errors.title = "Required";
-      }
-      if (!values.release_date) {
-        errors.release_date = "Required";
-      }
-      if (!values.poster_path) {
-        errors.poster_path = "Required";
-      }
-      if (!values.rating) {
-        errors.rating = "Required";
-      }
-      if (!values.genres) {
-        errors.genres = "Required";
-      }
-      if (!values.runtime) {
-        errors.runtime = "Required";
-      }
-      if (!values.overview) {
-        errors.overview = "Required";
-      }
-      return errors;
+      return formValidation(values);
     },
   });
+  useEffect(() => {
+    if (success) {
+      formik.resetForm();
+      dispatch(resetCreateMovieState());
+    }
+  }, [success, dispatch]);
 
   return (
     <div>
@@ -90,7 +79,7 @@ export default function AddMovie() {
                 onClick={() => setToggleMovieModal(false)}
               />
             </div>
-            <form onSubmit={formik.handleSubmit} ref={MultipleSelectRef}>
+            <form onSubmit={formik.handleSubmit} ref={multipleSelectRef}>
               <div className="left">
                 <div className="form-title">
                   <label>TITLE</label>
@@ -123,6 +112,7 @@ export default function AddMovie() {
                 <div className="genre">
                   <label>GENRE</label>
                   <MultipleSelect
+                    success={success}
                     name="genres"
                     options={options}
                     className="options"
@@ -187,7 +177,11 @@ export default function AddMovie() {
                 />
               </div>
               <div className="buttons">
-                <button type="reset" className="reset">
+                <button
+                  type="reset"
+                  className="reset"
+                  onClick={() => formik.resetForm()}
+                >
                   RESET
                 </button>
                 <button type="submit" className="submit">

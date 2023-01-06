@@ -31,3 +31,25 @@ export const validateForm = (formData, errorMap) => {
     isFormValid: isFormValid(newFormData),
   };
 };
+
+export const formValidation = (values) => {
+  const errors = {};
+  const REQUIRED = "Required";
+  for (let key in values) {
+    if (!values[key]) {
+      errors[key] = REQUIRED;
+    }
+  }
+  if (!validateURL(values.poster_path)) {
+    errors.poster_path = "Please enter a valid URL";
+  }
+  return errors;
+};
+
+export const validateURL = (url) => {
+  var expression =
+    // eslint-disable-next-line no-useless-escape
+    /^https?:\/\/?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  var regex = new RegExp(expression);
+  return regex.test(url);
+};

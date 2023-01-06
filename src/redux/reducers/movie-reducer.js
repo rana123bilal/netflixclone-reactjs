@@ -29,11 +29,13 @@ import {
   MOVIE_DELETE_REQUEST,
   MOVIE_DELETE_SUCCESS,
   MOVIE_DELETE_FAIL,
+  RESET_CREATE_MOVIE_STATE,
 } from "../constants/movieConstant";
 
 const initialState = {
   loading: false,
   movies: [],
+  success: false,
 };
 const intialMovieDetailState = {
   movie: {},
@@ -45,11 +47,13 @@ export function movieListReducer(state = initialState, { type, payload }) {
       return {
         loading: true,
         movies: [],
+        success: false,
       };
     case MOVIE_LIST_SUCCESS:
       return {
         loading: false,
         movies: payload,
+        success: true,
       };
     case MOVIE_LIST_FAIL:
       return {
@@ -144,14 +148,23 @@ export const movieDetailReducer = (
   }
 };
 
-export const movieCreateReducer = (state = initialState, { type, payload }) => {
+export const movieCreateReducer = (
+  state = { loading: false, success: false, status: null },
+  { type, payload }
+) => {
   switch (type) {
     case MOVIE_CREATE_REQUEST:
       return { ...state, loading: true };
     case MOVIE_CREATE_SUCCESS:
-      return { loading: false, movies: [...state.movies, payload] };
+      return {
+        loading: false,
+        success: true,
+        status: payload,
+      };
     case MOVIE_CREATE_FAIL:
-      return { loading: false, error: payload };
+      return { loading: false, error: payload, success: false };
+    case RESET_CREATE_MOVIE_STATE:
+      return { ...state, success: false };
     default:
       return state;
   }

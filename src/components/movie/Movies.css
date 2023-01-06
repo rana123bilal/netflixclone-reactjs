@@ -132,7 +132,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .left-error{
     color: white;
-    margin-left: 450px;
+    margin-left: 3px;
 }
 
 .text-area{

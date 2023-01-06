@@ -29,6 +29,7 @@ import {
   MOVIE_DELETE_REQUEST,
   MOVIE_DELETE_SUCCESS,
   MOVIE_DELETE_FAIL,
+  RESET_CREATE_MOVIE_STATE,
 } from "../constants/movieConstant";
 import axios from "axios";
 
@@ -144,7 +145,9 @@ export const createMovie = (movieData) => async (dispatch) => {
   try {
     dispatch({ type: MOVIE_CREATE_REQUEST });
     const response = await axios.post(`/movies`, movieData);
-    dispatch({ type: MOVIE_CREATE_SUCCESS, payload: response.data.data });
+    if (response.status === 201) {
+      dispatch({ type: MOVIE_CREATE_SUCCESS, payload: response.status });
+    }
   } catch (error) {
     dispatch({
       type: MOVIE_CREATE_FAIL,
@@ -154,6 +157,10 @@ export const createMovie = (movieData) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const resetCreateMovieState = () => (dispatch) => {
+  return dispatch({ type: RESET_CREATE_MOVIE_STATE });
 };
 
 export const editMovie = (movieData) => async (dispatch) => {

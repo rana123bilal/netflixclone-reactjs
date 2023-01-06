@@ -9,16 +9,18 @@ const SORT_TYPES = {
 
 export default SORT_TYPES;
 
-export const options = [
-  { value: "Action", label: "Action" },
-  { value: "Drama", label: "Drama" },
-  { value: "Romance", label: "Romance" },
-  { value: "Adventure", label: "Adventure" },
-  { value: "Fantasy", label: "Fantasy" },
-  { value: "Animation", label: "Animation" },
-  { value: "Family", label: "Family" },
-  { value: "Comedy", label: "Comedy" },
-  { value: "Science Fiction", label: "Science Fiction" },
-  { value: "Mystery", label: "Mystery" },
-  { value: "Thriller", label: "Thriller" },
+const genreList = [
+  "Action",
+  "Drama",
+  "Romance",
+  "Adventure",
+  "Fantasy",
+  "Animation",
+  "Family",
+  "Comedy",
+  "Science Fiction",
+  "Mystery",
+  "Thriller",
 ];
+
+export const options = genreList.map((value) => ({ value, label: value }));
