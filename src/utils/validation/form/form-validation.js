@@ -36,18 +36,18 @@ export const movieDataValidations = (values) => {
   const errors = {};
   const REQUIRED = "Required";
   for (let key in values) {
-    if (!values[key]) {
+    if (values[key].length === 0 || values[key] < 0) {
       errors[key] = REQUIRED;
     }
   }
   if (!validateURL(values.poster_path)) {
     errors.poster_path = "Please enter a valid URL";
   }
-  if (values.rating < 0) {
-    errors.rating = "Ratings Must be Larger then 0";
+  if (values.rating < -1) {
+    errors.rating = "Ratings Must be Larger or equal to 0";
   }
-  if (values.runtime < 0) {
-    errors.runtime = "Runtime Must be Larger then 0";
+  if (values.runtime < -1) {
+    errors.runtime = "Runtime Must be Larger or equal to 0";
   }
   return errors;
 };

@@ -57,7 +57,7 @@ export default memo(MultipleSelect);
 
 MultipleSelect.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.any,
   options: PropTypes.array,
   className: PropTypes.string,
   success: PropTypes.any,

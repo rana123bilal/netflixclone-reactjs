@@ -51,7 +51,7 @@ export default function EditMovie() {
         id: movieId,
         title: values.title,
         poster_path: values.poster_path,
-        runtime: Number(values.runtime),
+        runtime: values.runtime,
         release_date: values.release_date,
         vote_average: values.rating,
         genres: values.genres,
@@ -91,7 +91,7 @@ export default function EditMovie() {
                     name="title"
                     type="text"
                     placeholder="Enter Title"
-                    value={formik.values.title}
+                    value={formik.values.title || ""}
                     onChange={formik.handleChange}
                   />
                   {formik.errors.title && (
@@ -105,7 +105,7 @@ export default function EditMovie() {
                     type="text"
                     placeholder="Enter URL"
                     onChange={formik.handleChange}
-                    value={formik.values.poster_path}
+                    value={formik.values.poster_path || ""}
                   />
                   {formik.errors.poster_path && (
                     <div className="left-error">
@@ -120,7 +120,7 @@ export default function EditMovie() {
                     options={options}
                     className="options"
                     onChange={onValueChange}
-                    value={formik.values.genres?.toString()}
+                    value={formik.values.genres?.toString() || ""}
                   />
                   {formik.errors.genres && (
                     <div className="left-error">{formik.errors.genres}</div>
@@ -134,7 +134,7 @@ export default function EditMovie() {
                     name="release_date"
                     type="date"
                     placeholder="Enter Release Date"
-                    value={formik.values.release_date}
+                    value={formik.values.release_date || ""}
                     onChange={formik.handleChange}
                   />
                   {formik.errors.release_date && (
@@ -147,7 +147,7 @@ export default function EditMovie() {
                     name="rating"
                     type="number"
                     placeholder="Enter Rating"
-                    value={formik.values.rating}
+                    value={formik.values.rating || ""}
                     onChange={formik.handleChange}
                   />
                   {formik.errors.rating && (
@@ -157,10 +157,10 @@ export default function EditMovie() {
                 <div className="runtime">
                   <label>Runtime</label>
                   <input
-                    type="text"
+                    type="number"
                     name="runtime"
                     placeholder="Enter Minutes"
-                    value={formik.values.runtime}
+                    value={formik.values.runtime || ""}
                     onChange={formik.handleChange}
                   />
                   {formik.errors.runtime && (
@@ -175,7 +175,7 @@ export default function EditMovie() {
                   name="overview"
                   type="textarea"
                   placeholder="Enter Description"
-                  value={formik.values.overview}
+                  value={formik.values.overview || ""}
                   onChange={formik.handleChange}
                 />
               </div>

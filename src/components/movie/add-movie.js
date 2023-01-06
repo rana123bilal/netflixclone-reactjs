@@ -34,7 +34,7 @@ export default function AddMovie() {
       poster_path: "",
       rating: "",
       genres: "",
-      runtime: 0,
+      runtime: "",
       overview: "",
     },
     validateOnBlur: true,
@@ -43,13 +43,14 @@ export default function AddMovie() {
       const movieData = {
         title: values.title,
         poster_path: values.poster_path,
-        runtime: Number(values.runtime),
+        runtime: values.runtime,
         release_date: values.release_date,
         vote_average: values.rating,
         genres: values.genres,
         overview: values.overview,
       };
       dispatch(createMovie(movieData));
+      console.log(movieData);
     },
     validate: (values) => {
       return movieDataValidations(values);
@@ -155,7 +156,7 @@ export default function AddMovie() {
                   <label>RUNTIME</label>
                   <input
                     name="runtime"
-                    type="text"
+                    type="number"
                     placeholder="Enter Minutes"
                     onChange={formik.handleChange}
                     value={formik.values.runtime}
