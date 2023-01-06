@@ -50,7 +50,6 @@ export default function AddMovie() {
         overview: values.overview,
       };
       dispatch(createMovie(movieData));
-      console.log(movieData);
     },
     validate: (values) => {
       return movieDataValidations(values);
