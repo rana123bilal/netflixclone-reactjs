@@ -31,3 +31,31 @@ export const validateForm = (formData, errorMap) => {
     isFormValid: isFormValid(newFormData),
   };
 };
+
+export const movieDataValidations = (values) => {
+  const errors = {};
+  const REQUIRED = "Required";
+  for (let key in values) {
+    if (values[key].length === 0 || values[key] < 0) {
+      errors[key] = REQUIRED;
+    }
+  }
+  if (!validateURL(values.poster_path)) {
+    errors.poster_path = "Please enter a valid URL";
+  }
+  if (values.rating < -1) {
+    errors.rating = "Ratings Must be Larger or equal to 0";
+  }
+  if (values.runtime < -1) {
+    errors.runtime = "Runtime Must be Larger or equal to 0";
+  }
+  return errors;
+};
+
+export const validateURL = (url) => {
+  var expression =
+    // eslint-disable-next-line no-useless-escape
+    /^https?:\/\/?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+  var regex = new RegExp(expression);
+  return regex.test(url);
+};

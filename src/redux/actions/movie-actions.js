@@ -17,6 +17,19 @@ import {
   FILTER_LIST_REQUEST,
   FILTER_LIST_SUCCESS,
   FILTER_LIST_FAIL,
+  MOVIE_CREATE_REQUEST,
+  MOVIE_CREATE_SUCCESS,
+  MOVIE_CREATE_FAIL,
+  MOVIE_EDIT_REQUEST,
+  MOVIE_EDIT_SUCCESS,
+  MOVIE_EDIT_FAIL,
+  GET_MOVIE_BY_ID_REQUEST,
+  GET_MOVIE_BY_ID_SUCCESS,
+  GET_MOVIE_BY_ID_FAIL,
+  MOVIE_DELETE_REQUEST,
+  MOVIE_DELETE_SUCCESS,
+  MOVIE_DELETE_FAIL,
+  RESET_CREATE_MOVIE_STATE,
 } from "../constants/movieConstant";
 import axios from "axios";
 
@@ -120,6 +133,79 @@ export const filterMoviesByGenres = (query) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: FILTER_LIST_FAIL,
+      payload:
+        error.response && error.response.data
+          ? error.response.data
+          : error.message,
+    });
+  }
+};
+
+export const createMovie = (movieData) => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_CREATE_REQUEST });
+    const response = await axios.post(`/movies`, movieData);
+    if (response.status === 201) {
+      dispatch({ type: MOVIE_CREATE_SUCCESS, payload: response.status });
+    }
+  } catch (error) {
+    dispatch({
+      type: MOVIE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data
+          ? error.response.data
+          : error.message,
+    });
+  }
+};
+
+export const resetCreateMovieState = () => (dispatch) => {
+  return dispatch({ type: RESET_CREATE_MOVIE_STATE });
+};
+
+export const editMovie = (movieData) => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_EDIT_REQUEST });
+    const response = await axios.put(`/movies`, movieData);
+    dispatch({ type: MOVIE_EDIT_SUCCESS, payload: response.data.data });
+  } catch (error) {
+    dispatch({
+      type: MOVIE_EDIT_FAIL,
+      payload:
+        error.response && error.response.data
+          ? error.response.data
+          : error.message,
+    });
+  }
+};
+
+export const deleteMovie = (movieId) => async (dispatch) => {
+  try {
+    dispatch({ type: MOVIE_DELETE_REQUEST });
+    await axios.delete(`/movies/${movieId}`);
+    dispatch({ type: MOVIE_DELETE_SUCCESS });
+  } catch (error) {
+    dispatch({
+      type: MOVIE_DELETE_FAIL,
+      payload:
+        error.response && error.response.data
+          ? error.response.data
+          : error.message,
+    });
+  }
+};
+
+export const getMovieById = (movieId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_MOVIE_BY_ID_REQUEST });
+    const { data } = await axios.get(`/movies/${movieId}`);
+    dispatch({
+      type: GET_MOVIE_BY_ID_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_MOVIE_BY_ID_FAIL,
       payload:
         error.response && error.response.data
           ? error.response.data

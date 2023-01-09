@@ -10,7 +10,7 @@
     margin-top: 5px;
     float: right;
     width: 976px;
-    height: 717px;
+    height: 795px;
     padding: 16px;
     overflow: hidden;
 }
@@ -113,23 +113,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color-scheme: dark;
     margin: 10px;
 }
-
-
-.options{
-    width: 525px;
-    height: 57px;
-    top: 183px;
-    border-radius: 4px;
-    opacity: 80%;
-    background: #323232;
-    font-size: 15px;
-    border: none;
-    color: #FFFFFF;
-    font-weight: 400;
-    font-style: normal;
-    padding: 10px;
+.css-13cymwt-control{
+    background-color: #323232;
 }
+ 
+.options{
+    background-color: #323232;
+} 
 
+#demo-multiple-name-label{
+    color: #FFFFFF;
+    opacity: 80%;
+    font-family: Montserrat;
+}
+.error{
+    color: white;
+}
+.left-error{
+    color: white;
+    margin-left: 3px;
+}
 
 .text-area{
     margin-top: 20px;
@@ -339,4 +342,8 @@ textarea {
 hr{
     background-color:#323232;
     color: #323232;
+}
+
+.multiple-drop-down{
+    width: 525px;
 }

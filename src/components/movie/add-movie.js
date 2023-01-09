@@ -1,47 +1,67 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useRef } from "react";
 import "./Movies.css";
-import { DUMMY_DATA } from "../data";
+import { useFormik } from "formik";
 import { useContext } from "react";
+import {
+  createMovie,
+  resetCreateMovieState,
+} from "../../redux/actions/movie-actions";
 import DataContext from "../../context/data-context";
-import useForm from "../../hooks/useForm";
+import { useDispatch, useSelector } from "react-redux";
+import MultipleSelect from "./multipleSelect";
+import { options } from "../../Constants";
+import { movieDataValidations } from "../../utils/validation/form/form-validation";
 
 export default function AddMovie() {
-  const {
-    toggleMovieModal,
-    setToggleMovieModal,
-    setSortedMovieList,
-    sortedMovieList,
-  } = useContext(DataContext);
+  const { toggleMovieModal, setToggleMovieModal } = useContext(DataContext);
+  const { success } = useSelector((state) => {
+    return state.movieCreateDetail;
+  });
+  const onValueChange = useCallback((value) => {
+    return formik.setFieldValue("genres", value);
+  }, []);
 
-  const [formData, handleChangeInputs, handleSubmit] = useForm(addMovieHandler);
+  const multipleSelectRef = useRef(null);
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      release_date: "",
+      poster_path: "",
+      rating: "",
+      genres: "",
+      runtime: "",
+      overview: "",
+    },
+    validateOnBlur: true,
+    validateOnChange: false,
+    onSubmit: (values) => {
+      const movieData = {
+        title: values.title,
+        poster_path: values.poster_path,
+        runtime: values.runtime,
+        release_date: values.release_date,
+        vote_average: values.rating,
+        genres: values.genres,
+        overview: values.overview,
+      };
+      dispatch(createMovie(movieData));
+    },
+    validate: (values) => {
+      return movieDataValidations(values);
+    },
+  });
+  useEffect(() => {
+    if (success) {
+      formik.resetForm();
+      dispatch(resetCreateMovieState());
+    }
+  }, [success, dispatch]);
 
-  function addMovieHandler() {
-    const {
-      title,
-      releaseDate: { value },
-      movieURL,
-      rating,
-      genre,
-      runtime,
-      overview,
-    } = formData;
-    const year = value.split("-")[0];
-    const id = sortedMovieList.length + 1;
-    const newMovieDetails = {
-      title: title.value,
-      year,
-      movieURL: movieURL.value,
-      rating: rating.value,
-      genre: genre.value,
-      runtime: runtime.value,
-      overview: overview.value,
-      id,
-    };
-    setSortedMovieList([...DUMMY_DATA, newMovieDetails]);
-  }
   return (
     <div>
       <Modal
@@ -59,82 +79,109 @@ export default function AddMovie() {
                 onClick={() => setToggleMovieModal(false)}
               />
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit} ref={multipleSelectRef}>
               <div className="left">
                 <div className="form-title">
                   <label>TITLE</label>
                   <input
+                    name="title"
                     type="text"
                     placeholder="Enter Title"
-                    onChange={handleChangeInputs("title")}
-                    value={formData.title.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.title}
                   />
+                  {formik.errors.title && (
+                    <div className="left-error">{formik.errors.title}</div>
+                  )}
                 </div>
                 <div className="URL">
                   <label>MOVIE URL</label>
                   <input
+                    name="poster_path"
                     type="text"
                     placeholder="Enter URL"
-                    onChange={handleChangeInputs("movieURL")}
-                    value={formData.movieURL.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.poster_path}
                   />
+                  {formik.errors.poster_path && (
+                    <div className="left-error">
+                      {formik.errors.poster_path}
+                    </div>
+                  )}
                 </div>
                 <div className="genre">
                   <label>GENRE</label>
-                  <select
+                  <MultipleSelect
+                    success={success}
+                    name="genres"
+                    options={options}
                     className="options"
-                    onChange={handleChangeInputs("genre")}
-                    value={formData.genre.value || ""}
-                  >
-                    <option type="checkbox">SELECT GENRE</option>
-                    <option>ACTION</option>
-                    <option>COMEDY</option>
-                    <option>DRAMA</option>
-                    <option>HORROR</option>
-                  </select>
+                    onChange={onValueChange}
+                    value={formik.values.genres}
+                  />
+                  {formik.errors.genres && (
+                    <div className="left-error">{formik.errors.genres}</div>
+                  )}
                 </div>
               </div>
               <div className="right">
                 <div className="date">
                   <label>RELEASE DATE</label>
                   <input
+                    name="release_date"
                     type="date"
                     placeholder="Enter Release Date"
-                    onChange={handleChangeInputs("releaseDate")}
-                    value={formData.releaseDate.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.release_date}
                   />
+                  {formik.errors.release_date && (
+                    <div className="error">{formik.errors.release_date}</div>
+                  )}
                 </div>
                 <div className="ratings">
                   <label>RATINGS</label>
                   <input
+                    name="rating"
                     type="number"
                     placeholder="Enter Rating"
-                    onChange={handleChangeInputs("rating")}
-                    value={formData.rating.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.rating}
                   />
+                  {formik.errors.rating && (
+                    <div className="error">{formik.errors.rating}</div>
+                  )}
                 </div>
                 <div className="runtime">
                   <label>RUNTIME</label>
                   <input
-                    type="text"
+                    name="runtime"
+                    type="number"
                     placeholder="Enter Minutes"
-                    onChange={handleChangeInputs("runtime")}
-                    value={formData.runtime.value || ""}
+                    onChange={formik.handleChange}
+                    value={formik.values.runtime}
                   />
+                  {formik.errors.runtime && (
+                    <div className="error">{formik.errors.runtime}</div>
+                  )}
                 </div>
               </div>
 
               <div className="text-area">
                 <label>OVERVIEW</label>
                 <textarea
+                  name="overview"
                   type="textarea"
                   placeholder="Enter Description"
-                  onChange={handleChangeInputs("overview")}
-                  value={formData.overview.value || ""}
+                  onChange={formik.handleChange}
+                  value={formik.values.overview}
                 />
               </div>
               <div className="buttons">
-                <button type="reset" className="reset">
+                <button
+                  type="reset"
+                  className="reset"
+                  onClick={() => formik.resetForm()}
+                >
                   RESET
                 </button>
                 <button type="submit" className="submit">

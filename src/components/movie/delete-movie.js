@@ -4,19 +4,19 @@ import Modal from "@mui/material/Modal";
 import "./Movies.css";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
+import { useDispatch } from "react-redux";
+import { deleteMovie, fetchMovieList } from "../../redux/actions/movie-actions";
 
 export default function DeleteMovie() {
-  const {
-    openDeleteMovieModal,
-    setOpenDeleteMovieModal,
-    setSortedMovieList,
-    movieId,
-    sortedMovieList,
-  } = useContext(DataContext);
+  const { openDeleteMovieModal, setOpenDeleteMovieModal, movieId } =
+    useContext(DataContext);
+
+  const dispatch = useDispatch();
 
   const deleteMovieHandler = (id) => {
-    setSortedMovieList(sortedMovieList.filter((movie) => movie.id !== id));
+    dispatch(deleteMovie(id));
     setOpenDeleteMovieModal(false);
+    dispatch(fetchMovieList());
   };
 
   return (
@@ -30,7 +30,7 @@ export default function DeleteMovie() {
         <Box>
           <div className="deleteMovieModal">
             <h2>Delete Movie</h2>
-            <p>Are you sure you want to delete this movie?</p> 
+            <p>Are you sure you want to delete this movie?</p>
             <button
               className="confirm-delete"
               onClick={() => deleteMovieHandler(movieId)}

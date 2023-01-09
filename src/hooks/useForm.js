@@ -4,10 +4,10 @@ import { validateForm } from "../utils/validation/form/form-validation";
 const useForm = (submitCallBack) => {
   const initialState = {
     title: { value: "", errorMessage: "", hasError: false },
-    releaseDate: { value: "", errorMessage: "", hasError: false },
-    movieURL: { value: "", errorMessage: "", hasError: false },
+    release_date: { value: "", errorMessage: "", hasError: false },
+    poster_path: { value: "", errorMessage: "", hasError: false },
     rating: { value: "", errorMessage: "", hasError: false },
-    genre: { value: "", errorMessage: "", hasError: false },
+    genres: { value: "", errorMessage: "", hasError: false },
     runtime: { value: "", errorMessage: "", hasError: false },
     overview: { value: "", errorMessage: "", hasError: false },
   };
@@ -16,10 +16,10 @@ const useForm = (submitCallBack) => {
 
   const errorMap = {
     title: "Title is required",
-    releaseDate: "Release date is required",
-    movieURL: "Movie url is required",
+    release_date: "Release date is required",
+    poster_path: "Movie url is required",
     rating: "Rating is required",
-    genre: "Genre is required",
+    genres: "genres is required",
     runtime: "Runtime is required",
     overview: "Overview is required",
   };
