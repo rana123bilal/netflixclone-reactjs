@@ -14,7 +14,7 @@ import DataContext from "../../context/data-context";
 import { useDispatch, useSelector } from "react-redux";
 import MultipleSelect from "./multipleSelect";
 import { options } from "../../Constants";
-import { movieDataValidations } from "../../utils/validation/form/form-validation";
+import { validateMovieData } from "../../utils/validation/form/form-validation";
 
 export default function AddMovie() {
   const { toggleMovieModal, setToggleMovieModal } = useContext(DataContext);
@@ -52,7 +52,7 @@ export default function AddMovie() {
       dispatch(createMovie(movieData));
     },
     validate: (values) => {
-      return movieDataValidations(values);
+      return validateMovieData(values);
     },
   });
   useEffect(() => {

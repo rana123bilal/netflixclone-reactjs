@@ -14,7 +14,7 @@ import { editMovie } from "../../redux/actions/movie-actions";
 import MultipleSelect from "./multipleSelect";
 import DataContext from "../../context/data-context";
 import { useDispatch, useSelector } from "react-redux";
-import { movieDataValidations } from "../../utils/validation/form/form-validation";
+import { validateMovieData } from "../../utils/validation/form/form-validation";
 
 export default function EditMovie() {
   const { openEditMovieModal, setOpenEditMovieModal, movieId } =
@@ -62,7 +62,7 @@ export default function EditMovie() {
       setOpenEditMovieModal(false);
     },
     validate: (values) => {
-      return movieDataValidations(values);
+      return validateMovieData(values);
     },
   });
 

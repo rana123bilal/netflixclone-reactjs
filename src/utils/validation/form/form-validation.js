@@ -32,7 +32,7 @@ export const validateForm = (formData, errorMap) => {
   };
 };
 
-export const movieDataValidations = (values) => {
+export const validateMovieData = (values) => {
   const errors = {};
   const REQUIRED = "Required";
   for (let key in values) {
