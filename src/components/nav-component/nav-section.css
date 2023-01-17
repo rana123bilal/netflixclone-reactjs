@@ -8,6 +8,7 @@
 
 .left-links-container a{
     display: flex;
+    flex-wrap: wrap;
     color: inherit;
     text-decoration: none;
 }

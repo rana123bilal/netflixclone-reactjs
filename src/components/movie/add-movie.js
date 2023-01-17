@@ -23,6 +23,7 @@ export default function AddMovie() {
   });
   const onValueChange = useCallback((value) => {
     return formik.setFieldValue("genres", value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const multipleSelectRef = useRef(null);
@@ -60,7 +61,7 @@ export default function AddMovie() {
       formik.resetForm();
       dispatch(resetCreateMovieState());
     }
-  }, [success, dispatch]);
+  }, [success, dispatch, formik]);
 
   return (
     <div>

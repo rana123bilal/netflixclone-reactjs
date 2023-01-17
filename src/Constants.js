@@ -9,18 +9,27 @@ const SORT_TYPES = {
 
 export default SORT_TYPES;
 
-const genreList = [
-  "Action",
-  "Drama",
-  "Romance",
-  "Adventure",
-  "Fantasy",
-  "Animation",
-  "Family",
-  "Comedy",
-  "Science Fiction",
-  "Mystery",
-  "Thriller",
+export const genreList = [
+  "action",
+  "drama",
+  "romance",
+  "adventure",
+  "fantasy",
+  "animation",
+  "family",
+  "comedy",
+  "science fiction",
+  "mystery",
+  "thriller",
+];
+
+export const genreListforNav = [
+  "all",
+  "action",
+  "drama",
+  "romance",
+  "adventure",
+  "fantasy",
 ];
 
 export const options = genreList.map((value) => ({ value, label: value }));
