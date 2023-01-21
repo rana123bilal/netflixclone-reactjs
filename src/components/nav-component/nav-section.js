@@ -17,7 +17,7 @@ function NavSection() {
 
   const filterMovies = (genre) => {
     if (genre !== "all") {
-      navigate(`/search/${genre}`);
+      navigate(`/genre/${genre}`);
     } else {
       navigate(`/search`);
     }

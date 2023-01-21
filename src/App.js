@@ -23,6 +23,7 @@ function App() {
         <Route path="/search/:searchQuery" element={<Home />} />
         <Route path="/search/movie/:id" element={<Home />} />
         <Route path="/sortBy/:searchQuery" element={<Home />} />
+        <Route path="/genre/:searchQuery" element={<Home />} />
       </Routes>
     </div>
   );
