@@ -4,6 +4,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/home/Home";
 import { useNavigate } from "react-router-dom";
+import NotFound from "./components/not-found/not-found";
 
 function App() {
   const navigate = useNavigate();
@@ -17,9 +18,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/search" exact element={<Home />} />
         <Route path="/search/:searchQuery" element={<Home />} />
         <Route path="/search/movie/:id" element={<Home />} />
+        <Route path="/sortBy/:searchQuery" element={<Home />} />
       </Routes>
     </div>
   );

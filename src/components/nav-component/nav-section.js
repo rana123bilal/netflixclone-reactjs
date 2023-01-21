@@ -11,7 +11,7 @@ function NavSection() {
 
   useEffect(() => {
     if (sortValue !== "none") {
-      navigate(`/search/${sortValue}`);
+      navigate(`/sortBy/${sortValue}`);
     }
   }, [dispatch, sortValue]);
 
