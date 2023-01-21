@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/search" exact element={<Home />} />
         <Route path="/search/:searchQuery" element={<Home />} />
+        <Route path="/search/movie/:id" element={<Home />} />
       </Routes>
     </div>
   );

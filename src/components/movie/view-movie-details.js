@@ -13,6 +13,7 @@ function ViewMovie() {
     useContext(DataContext);
 
   const dispatch = useDispatch();
+
   const movieDetails = useSelector((state) => state.movieDetails);
   const { movie } = movieDetails;
   useEffect(() => {
