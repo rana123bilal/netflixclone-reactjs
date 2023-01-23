@@ -16,7 +16,6 @@ function Search() {
     if (search !== "") {
       navigate(`/search/${search}`);
     }
-    setSearch("");
   };
 
   return (
