@@ -4,10 +4,7 @@ import { useDispatch } from "react-redux";
 import DataContext from "../../context/data-context";
 import Search from "../search/Search";
 import Footer from "../footer/Footer";
-import {
-  fetchMovieList,
-  searchMoviesByGenres,
-} from "../../redux/actions/movie-actions";
+import { fetchMovieList } from "../../redux/actions/movie-actions";
 import Header from "../header/Header";
 import NavSection from "../nav-component/nav-section";
 import CardList from "../cards/card-list";
@@ -22,12 +19,19 @@ import SORT_TYPES from "../../Constants";
 import {
   searchMoviesByTitle,
   sortMovieList,
+  filterMoviesByGenres,
 } from "../../redux/actions/movie-actions";
 
 function Home() {
   const { viewMovieDetails, openEditMovieModal } = useContext(DataContext);
   const dispatch = useDispatch();
   const { searchQuery } = useParams();
+  const search = window.location.search;
+  const searchParams = new URLSearchParams(search);
+  const filterParam = searchParams.get("filter");
+  const genreParam = genreList.includes(filterParam);
+  const hasFilterParam = searchParams.has("filter");
+  const sortParam = searchParams.get("sortBy");
 
   const sortMovies = (type) => {
     const sortType = SORT_TYPES[type];
@@ -35,19 +39,19 @@ function Home() {
   };
 
   useEffect(() => {
-    if (searchQuery) {
-      if (genreList.includes(searchQuery)) {
-        dispatch(searchMoviesByGenres(searchQuery));
+    if (search) {
+      if (genreParam && hasFilterParam) {
+        dispatch(filterMoviesByGenres(filterParam));
         return;
-      } else if (searchQuery in SORT_TYPES) {
-        sortMovies(searchQuery);
+      } else if (!genreParam && sortParam in SORT_TYPES) {
+        sortMovies(sortParam);
         return;
       }
       dispatch(searchMoviesByTitle(searchQuery));
     } else {
       dispatch(fetchMovieList());
     }
-  }, [dispatch, searchQuery]);
+  }, [dispatch, search]);
 
   return (
     <div>

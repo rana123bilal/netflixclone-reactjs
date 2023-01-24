@@ -11,13 +11,13 @@ function NavSection() {
 
   useEffect(() => {
     if (sortValue !== "none") {
-      navigate(`/sortBy/${sortValue}`);
+      navigate(`/search?sortBy=${sortValue}&sortOrder=desc`);
     }
   }, [dispatch, sortValue]);
 
   const filterMovies = (genre) => {
     if (genre !== "all") {
-      navigate(`/genre/${genre}`);
+      navigate(`/search?sortBy=genres&filter=${genre}`);
     } else {
       navigate(`/search`);
     }
