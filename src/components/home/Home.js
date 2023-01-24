@@ -20,10 +20,12 @@ import {
   searchMoviesByTitle,
   sortMovieList,
   filterMoviesByGenres,
+  listMovieDetails,
 } from "../../redux/actions/movie-actions";
 
 function Home() {
-  const { viewMovieDetails, openEditMovieModal } = useContext(DataContext);
+  const { viewMovieDetails, openEditMovieModal, movieId } =
+    useContext(DataContext);
   const dispatch = useDispatch();
   const { searchQuery } = useParams();
   const search = window.location.search;
@@ -32,6 +34,7 @@ function Home() {
   const genreParam = genreList.includes(filterParam);
   const hasFilterParam = searchParams.has("filter");
   const sortParam = searchParams.get("sortBy");
+  const titleParam = searchParams.get("title");
 
   const sortMovies = (type) => {
     const sortType = SORT_TYPES[type];
@@ -47,11 +50,18 @@ function Home() {
         sortMovies(sortParam);
         return;
       }
-      dispatch(searchMoviesByTitle(searchQuery));
-    } else {
-      dispatch(fetchMovieList());
+      if (titleParam) {
+        dispatch(searchMoviesByTitle(searchQuery));
+      }
     }
+    dispatch(fetchMovieList());
   }, [dispatch, search]);
+
+  useEffect(() => {
+    if (movieId) {
+      dispatch(listMovieDetails(movieId));
+    }
+  }, [movieId, dispatch]);
 
   return (
     <div>
