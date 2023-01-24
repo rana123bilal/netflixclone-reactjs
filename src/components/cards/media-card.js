@@ -30,6 +30,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setMovieIdForDeleteEdit(id);
     navigate(`/search?movie=${id}`);
   };
+
   const addDefaultSourceImage = (event) => {
     event.target.src = "https://ranobehub.org/img/ranobe/posters/default.jpg";
   };

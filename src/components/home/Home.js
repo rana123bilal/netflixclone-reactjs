@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import DataContext from "../../context/data-context";
-import Search from "../search/Search";
+import Search from "../search/search";
 import Footer from "../footer/Footer";
 import { fetchMovieList } from "../../redux/actions/movie-actions";
 import Header from "../header/Header";
@@ -13,9 +13,9 @@ import AddMovie from "../movie/add-movie";
 import EditMovie from "../movie/edit-movie";
 import DeleteMovie from "../movie/delete-movie";
 import ViewMovie from "../movie/view-movie-details";
-import { genreList } from "../../Constants";
+import { genreList } from "../../constants";
 import { useParams } from "react-router-dom";
-import SORT_TYPES from "../../Constants";
+import SORT_TYPES from "../../constants";
 import {
   searchMoviesByTitle,
   sortMovieList,

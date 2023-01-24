@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./nav-section.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { genreListforNav } from "../../Constants.js";
+import { genreListforNav } from "../../constants.js";
 
 function NavSection() {
   const [sortValue, setSortValue] = useState("none");

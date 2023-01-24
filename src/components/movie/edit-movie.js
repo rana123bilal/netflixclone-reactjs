@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./Movies.css";
-import { options } from "../../Constants";
+import "./movies.css";
+import { options } from "../../constants";
 import { useContext } from "react";
 import { useFormik } from "formik";
 import {
@@ -11,7 +11,7 @@ import {
   getMovieById,
 } from "../../redux/actions/movie-actions";
 import { editMovie } from "../../redux/actions/movie-actions";
-import MultipleSelect from "./multipleSelect";
+import MultipleSelect from "./multiple-select";
 import DataContext from "../../context/data-context";
 import { useDispatch, useSelector } from "react-redux";
 import { movieDataValidations } from "../../utils/validation/form/form-validation";
