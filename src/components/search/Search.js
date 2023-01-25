@@ -14,7 +14,7 @@ function Search() {
   const searchMovies = (event) => {
     event.preventDefault();
     if (search !== "") {
-      navigate(`/search/${search}`);
+      navigate(`/search/movies?search=${search}&searchBy=title`);
     }
   };
 

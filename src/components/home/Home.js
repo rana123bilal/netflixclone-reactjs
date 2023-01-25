@@ -3,9 +3,9 @@ import { useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import DataContext from "../../context/data-context";
 import Search from "../search/search";
-import Footer from "../footer/Footer";
+import Footer from "../footer/footer";
 import { fetchMovieList } from "../../redux/actions/movie-actions";
-import Header from "../header/Header";
+import Header from "../header/header";
 import NavSection from "../nav-component/nav-section";
 import CardList from "../cards/card-list";
 import ErrorBoundry from "../error-boundries/error-boundry";
@@ -14,7 +14,6 @@ import EditMovie from "../movie/edit-movie";
 import DeleteMovie from "../movie/delete-movie";
 import ViewMovie from "../movie/view-movie-details";
 import { genreList } from "../../constants";
-import { useParams } from "react-router-dom";
 import SORT_TYPES from "../../constants";
 import {
   searchMoviesByTitle,
@@ -27,14 +26,14 @@ function Home() {
   const { viewMovieDetails, openEditMovieModal, movieId } =
     useContext(DataContext);
   const dispatch = useDispatch();
-  const { searchQuery } = useParams();
   const search = window.location.search;
   const searchParams = new URLSearchParams(search);
   const filterParam = searchParams.get("filter");
   const genreParam = genreList.includes(filterParam);
   const hasFilterParam = searchParams.has("filter");
-  const sortParam = searchParams.get("sortBy");
-  const titleParam = searchParams.get("title");
+  const sortByParam = searchParams.get("sortBy");
+  const searchByParam = searchParams.get("searchBy");
+  const getSearchParam = searchParams.get("search");
 
   const sortMovies = (type) => {
     const sortType = SORT_TYPES[type];
@@ -46,21 +45,21 @@ function Home() {
       if (genreParam && hasFilterParam) {
         dispatch(filterMoviesByGenres(filterParam));
         return;
-      } else if (!genreParam && sortParam in SORT_TYPES) {
-        sortMovies(sortParam);
+      } else if (!genreParam && sortByParam in SORT_TYPES) {
+        sortMovies(sortByParam);
         return;
       }
-      if (titleParam) {
-        dispatch(searchMoviesByTitle(searchQuery));
+      if (searchByParam === "title") {
+        dispatch(searchMoviesByTitle(getSearchParam));
       }
     }
-    dispatch(fetchMovieList());
   }, [dispatch, search]);
 
   useEffect(() => {
     if (movieId) {
       dispatch(listMovieDetails(movieId));
     }
+    dispatch(fetchMovieList());
   }, [movieId, dispatch]);
 
   return (
