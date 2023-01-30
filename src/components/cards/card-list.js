@@ -8,7 +8,6 @@ import DataContext from "../../context/data-context";
 
 function CardList() {
   const { inputSearchTerm } = useContext(DataContext);
-
   const { loading, movies, error } = useSelector((state) => state.movieList);
   const filteredMovieList = movies?.filter((value) => {
     if (inputSearchTerm !== "") {
@@ -25,7 +24,7 @@ function CardList() {
         {filteredMovieList?.length} movies found
       </div>
       <Grid>
-        {loading && <h1 className="loading">Loading...</h1>}
+        {loading && <h1 className="loading">Loading....</h1>}
         {movies?.map((movie, i) => {
           return (
             <Grid className="card-wrapper" key={i}>
