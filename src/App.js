@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/home/home";
+import Home from "./components/home/home-1";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./components/not-found/not-found";
 
