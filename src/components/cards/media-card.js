@@ -26,7 +26,6 @@ export default function MediaCard({ id, title, image, genre, year }) {
   }
 
   const toggleCard = () => {
-    // setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);
     navigate(`/search?movie=${id}`);
   };

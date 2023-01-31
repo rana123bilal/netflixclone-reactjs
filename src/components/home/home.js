@@ -66,7 +66,7 @@ function Home() {
     if (!movies.length) {
       dispatch(fetchMovieList());
     }
-  }, [dispatch, movieIdParam, viewMovieDetails]);
+  }, [dispatch, movieIdParam]);
 
   return (
     <div>
