@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/logo.png";
-import "./header.css";
+import "./header-1.css";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
 

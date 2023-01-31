@@ -30,7 +30,7 @@ import {
   MOVIE_DELETE_SUCCESS,
   MOVIE_DELETE_FAIL,
   RESET_CREATE_MOVIE_STATE,
-} from "../constants/movie-constant";
+} from "../constants/movie-constant-1";
 
 const initialState = {
   loading: false,

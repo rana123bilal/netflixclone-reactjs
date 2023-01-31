@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import "./movies.css";
+import "./movies-1.css";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
 import { useDispatch } from "react-redux";

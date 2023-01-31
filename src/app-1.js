@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import "./App.css";
+import "./app-1.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/home/home-1";
+import Home from "./components/home/home";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./components/not-found/not-found";
 

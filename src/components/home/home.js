@@ -2,10 +2,10 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DataContext from "../../context/data-context";
-import Search from "../search/search";
-import Footer from "../footer/footer";
+import Search from "../search/search-1";
+import Footer from "../footer/footer-1";
 import { fetchMovieList } from "../../redux/actions/movie-actions";
-import Header from "../header/header";
+import Header from "../header/header-1";
 import NavSection from "../nav-component/nav-section";
 import CardList from "../cards/card-list";
 import ErrorBoundry from "../error-boundries/error-boundry";
@@ -13,8 +13,8 @@ import AddMovie from "../movie/add-movie";
 import EditMovie from "../movie/edit-movie";
 import DeleteMovie from "../movie/delete-movie";
 import ViewMovie from "../movie/view-movie-details";
-import { genreList } from "../../constants";
-import SORT_TYPES from "../../constants";
+import { genreList } from "../../constants-1";
+import SORT_TYPES from "../../constants-1";
 import {
   searchMoviesByTitle,
   sortMovieList,
