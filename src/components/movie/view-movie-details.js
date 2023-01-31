@@ -16,7 +16,6 @@ function ViewMovie() {
   function closeViewMovieDetails() {
     setViewMovieDetails(false);
   }
-  console.log(viewMovieDetails, "viewMovieDetails");
   const addDefaultSourceImage = (event) => {
     event.target.src = "https://ranobehub.org/img/ranobe/posters/default.jpg";
   };
