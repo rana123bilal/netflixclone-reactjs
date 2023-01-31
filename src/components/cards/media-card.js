@@ -13,7 +13,6 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setMovieIdForDeleteEdit,
     setOpenEditMovieModal,
     setOpenDeleteMovieModal,
-    setViewMovieDetails,
   } = useContext(DataContext);
   const navigate = useNavigate();
 
@@ -27,7 +26,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
   }
 
   const toggleCard = () => {
-    setViewMovieDetails(true);
+    // setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);
     navigate(`/search?movie=${id}`);
   };

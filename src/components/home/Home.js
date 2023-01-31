@@ -23,13 +23,14 @@ import {
 } from "../../redux/actions/movie-actions";
 
 function Home() {
-  const { viewMovieDetails, openEditMovieModal, movieId } =
+  const { viewMovieDetails, setViewMovieDetails, openEditMovieModal } =
     useContext(DataContext);
   const dispatch = useDispatch();
   const { movies } = useSelector((state) => state.movieList);
 
   const search = window.location.search;
   const searchParams = new URLSearchParams(search);
+  const movieIdParam = searchParams.get("movie");
   const filterParam = searchParams.get("filter");
   const genreParam = genreList.includes(filterParam);
   const hasFilterParam = searchParams.has("filter");
@@ -58,13 +59,14 @@ function Home() {
   }, [dispatch, search]);
 
   useEffect(() => {
-    if (movieId) {
-      dispatch(listMovieDetails(movieId));
+    if (movieIdParam) {
+      setViewMovieDetails(true);
+      dispatch(listMovieDetails(movieIdParam));
     }
     if (!movies.length) {
       dispatch(fetchMovieList());
     }
-  }, [movieId, dispatch]);
+  }, [dispatch, movieIdParam, viewMovieDetails]);
 
   return (
     <div>
