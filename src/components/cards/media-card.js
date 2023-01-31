@@ -25,6 +25,7 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
+
   const toggleCard = () => {
     setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);

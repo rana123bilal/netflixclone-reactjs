@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DataContext from "../../context/data-context";
 import Search from "../search/search";
 import Footer from "../footer/footer";
@@ -26,6 +26,8 @@ function Home() {
   const { viewMovieDetails, openEditMovieModal, movieId } =
     useContext(DataContext);
   const dispatch = useDispatch();
+  const { movies } = useSelector((state) => state.movieList);
+
   const search = window.location.search;
   const searchParams = new URLSearchParams(search);
   const filterParam = searchParams.get("filter");
@@ -59,7 +61,9 @@ function Home() {
     if (movieId) {
       dispatch(listMovieDetails(movieId));
     }
-    dispatch(fetchMovieList());
+    if (!movies.length) {
+      dispatch(fetchMovieList());
+    }
   }, [movieId, dispatch]);
 
   return (
