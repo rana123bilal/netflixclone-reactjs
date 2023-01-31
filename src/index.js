@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { DataProvider } from "./context/data-context";
 import "./index.css";
-import App from "./app-1";
+import App from "./app";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
