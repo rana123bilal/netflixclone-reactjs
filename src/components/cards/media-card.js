@@ -6,14 +6,15 @@ import kebabMenu from "../../assets/images/kebebMenu.png";
 import { useContext } from "react";
 import DataContext from "../../context/data-context";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router";
 
 export default function MediaCard({ id, title, image, genre, year }) {
   const {
     setMovieIdForDeleteEdit,
     setOpenEditMovieModal,
     setOpenDeleteMovieModal,
-    setViewMovieDetails,
   } = useContext(DataContext);
+  const navigate = useNavigate();
 
   function editCardHandler() {
     setOpenEditMovieModal(true);
@@ -23,10 +24,12 @@ export default function MediaCard({ id, title, image, genre, year }) {
     setMovieIdForDeleteEdit(id);
     setOpenDeleteMovieModal(true);
   }
+
   const toggleCard = () => {
-    setViewMovieDetails(true);
     setMovieIdForDeleteEdit(id);
+    navigate(`/search?movie=${id}`);
   };
+
   const addDefaultSourceImage = (event) => {
     event.target.src = "https://ranobehub.org/img/ranobe/posters/default.jpg";
   };

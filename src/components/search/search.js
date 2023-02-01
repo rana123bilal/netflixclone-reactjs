@@ -1,42 +1,21 @@
 import React, { useState } from "react";
-import "./Search.css";
-import { useDispatch } from "react-redux";
-import {
-  searchMoviesByTitle,
-  searchMoviesByGenres,
-} from "../../redux/actions/movie-actions";
+import "./search.css";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [search, setSearch] = useState("");
 
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSearchChange = (event) => {
     setSearch(event.target.value);
   };
-  const genres = [
-    "drama",
-    "fantasy",
-    "romance",
-    "family",
-    "mystery",
-    "science fiction",
-    "thriller",
-    "action",
-    "comedy",
-    "crime",
-  ];
 
   const searchMovies = (event) => {
     event.preventDefault();
     if (search !== "") {
-      if (genres.includes(search)) {
-        dispatch(searchMoviesByGenres(search));
-        return;
-      }
-      dispatch(searchMoviesByTitle(search));
+      navigate(`/search/movies?search=${search}&searchBy=title`);
     }
-    setSearch("");
   };
 
   return (

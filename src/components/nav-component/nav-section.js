@@ -1,37 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./nav-section.css";
 import { useDispatch } from "react-redux";
-import SORT_TYPES from "../../Constants.js";
-import {
-  sortMovieList,
-  filterMoviesByGenres,
-} from "../../redux/actions/movie-actions";
+import { useNavigate } from "react-router";
+import { genreListforNav } from "../../constants.js";
 
 function NavSection() {
   const [sortValue, setSortValue] = useState("none");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    const sortMovies = (type) => {
-      const sortType = SORT_TYPES[type];
-      dispatch(sortMovieList(sortType));
-    };
     if (sortValue !== "none") {
-      sortMovies(sortValue);
+      navigate(`/search?sortBy=${sortValue}&sortOrder=desc`);
     }
   }, [dispatch, sortValue]);
 
-  const genres = ["drama", "action", "comedy", "crime"];
+  const filterMovies = (genre) => {
+    if (genre !== "all") {
+      navigate(`/search?sortBy=genres&filter=${genre}`);
+    } else {
+      navigate(`/search`);
+    }
+  };
 
   return (
     <>
       <div className="links-container">
         <div className="left-links-container">
           <ul>
-            {genres.map((item, i) => (
+            {genreListforNav.map((item, i) => (
               <li
                 className="genre-list"
                 key={i}
-                onClick={() => dispatch(filterMoviesByGenres(item))}
+                onClick={() => filterMovies(item)}
               >
                 {item.toUpperCase()}
               </li>

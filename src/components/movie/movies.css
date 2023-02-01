@@ -307,6 +307,7 @@ textarea {
 .searchIcon{
     color: #F65261;
     margin-top: 42px;
+    cursor: pointer;
 } 
 
 .h2-heading{

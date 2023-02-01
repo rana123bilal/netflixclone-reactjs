@@ -3,7 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useRef } from "react";
-import "./Movies.css";
+import "./movies.css";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import {
@@ -12,8 +12,8 @@ import {
 } from "../../redux/actions/movie-actions";
 import DataContext from "../../context/data-context";
 import { useDispatch, useSelector } from "react-redux";
-import MultipleSelect from "./multipleSelect";
-import { options } from "../../Constants";
+import MultipleSelect from "./multiple-select";
+import { options } from "../../constants";
 import { movieDataValidations } from "../../utils/validation/form/form-validation";
 
 export default function AddMovie() {
@@ -23,6 +23,7 @@ export default function AddMovie() {
   });
   const onValueChange = useCallback((value) => {
     return formik.setFieldValue("genres", value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const multipleSelectRef = useRef(null);
@@ -60,7 +61,7 @@ export default function AddMovie() {
       formik.resetForm();
       dispatch(resetCreateMovieState());
     }
-  }, [success, dispatch]);
+  }, [success, dispatch, formik]);
 
   return (
     <div>

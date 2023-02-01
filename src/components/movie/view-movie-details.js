@@ -1,25 +1,17 @@
 import React from "react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Grid from "@mui/material/Grid";
 import logo from "../../assets/images/logo2.png";
 import oval from "../../assets/images/Oval.png";
-import { useDispatch, useSelector } from "react-redux";
-import { listMovieDetails } from "../../redux/actions/movie-actions";
+import { useSelector } from "react-redux";
 import DataContext from "../../context/data-context";
 import SearchIcon from "@mui/icons-material/Search";
 
 function ViewMovie() {
-  const { setViewMovieDetails, viewMovieDetails, movieId } =
-    useContext(DataContext);
+  const { setViewMovieDetails, viewMovieDetails } = useContext(DataContext);
 
-  const dispatch = useDispatch();
   const movieDetails = useSelector((state) => state.movieDetails);
   const { movie } = movieDetails;
-  useEffect(() => {
-    if (movieId) {
-      dispatch(listMovieDetails(movieId));
-    }
-  }, [movieId, dispatch]);
 
   function closeViewMovieDetails() {
     setViewMovieDetails(false);
