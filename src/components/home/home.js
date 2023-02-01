@@ -63,7 +63,7 @@ function Home() {
       setViewMovieDetails(true);
       dispatch(listMovieDetails(movieIdParam));
     }
-    if (!movies.length) {
+    if (!movies.length && !search) {
       dispatch(fetchMovieList());
     }
   }, [dispatch, movieIdParam]);
